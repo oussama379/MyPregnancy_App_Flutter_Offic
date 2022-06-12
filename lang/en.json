@@ -1,0 +1,137 @@
+{
+  "intro_acknowledgment": "This app was developed under the research project PEER 7-246 supported by the US Agency for International Development. The project team of Mohammed V University in Rabat would like to thank the National Academies of Science, Engineering, and Medicine, and USAID for their support.",
+  "app_name" : "My Pregnancy",
+  "failed" : "Failed",
+
+  "password_creation_page_title" : "Password Creation",
+  "password_creation_page_pwd_field_title" : "Password",
+  "password_creation_page_pwd_field_error_noValue" : "Please enter the password",
+  "password_creation_page_pwd_field_error_strong" : "Enter at least 4 characters or numbers",
+  "password_creation_page_pwdConf_field_title" : "Password confirmation",
+  "password_creation_page_pwdConf_field_error_noValue" : "Please re-enter the password",
+  "password_creation_page_pwdConf_field_error_noMatch" : "The passwords do not match",
+  "password_creation_page_no_pwd_msg" : "I don't want a password",
+  "password_creation_page_confirm_button" : "Enter",
+  "password_creation_page_toast_succ" : "The password created successfully",
+  "password_creation_page_toast_error" : "Password created unsuccessfully",
+
+  "password_auth_page_title" : "Authentication",
+  "password_auth_page_wrongPass" : "Wrong Password",
+  "password_auth_page_auth_succ" : "Authenticated Successfully",
+  "password_auth_page_auth_error" : "Authenticated Unsuccessfully",
+  "password_auth_page_recover_email" : "Recover your password by email",
+  "password_auth_page_other_error" : "Something went wrong, try again later",
+  "password_auth_page_pwd_sent" : "We sent the password to your email",
+  "password_auth_page_reset_email" : "Reset your password",
+
+
+
+  "login_page_title" : "Login",
+  "login_page_email_field_title" : "Email",
+  "login_page_create_button" : "Create An Account",
+  "login_page_forgot_button" : "Forgot your password?",
+  "login_page_email_field_error_noValue" : "Please enter your email",
+  "login_page_email_field_error_notFound" : "No user found for this email",
+  "login_page_email_field_error_wrong" : "Wrong password provided for that user",
+  "login_page_loggedIn_succ" : "Successfully logged in",
+
+  "recoverPass_page_title" : "Reset Password",
+  "recoverPass_page_check_email" : "Check your email to reset the password",
+  "recoverPass_page_email_field_noValid" : "please enter a valid email",
+  "recoverPass_page_text" : "Receive an email to reset your password",
+  "recoverPass_page_check_email" : "Check your email to reset the password",
+
+  
+  
+  
+
+  "createAccount_page_title" : "Request for registration",
+  "createAccount_page_text_msg" : "To create an account, you must send a request to the doctor so that he initiate the account for you.\n Please complete the form below to submit your request.",
+  "createAccount_page_phone_field_error_noValue" : "please enter your phone number",
+  "createAccount_page_phone_field_noValid" : "please enter a numeric value",
+  "createAccount_page_age_field_error_noValue" : "please enter your age",
+  "createAccount_page_nbPreg_field_error_noValue" : "please enter the number of previous pregnancies",
+  "createAccount_page_mobile_field_title" : "Mobile",
+  "createAccount_page_age_field_title" : "Age",
+  "createAccount_page_nbPreg_field_title" : "Number of previous pregnancies",
+  "createAccount_page_send_button" : "Send Request",
+
+  "email_recovery_msg" : "Your password is :",
+  "email_recovery_greeting" : "Hello, ",
+  "email_recovery_subject" : "Password recovery",
+
+  "settings_page_title" : "Settings",
+  "settings_page_logout" : "Log Out",
+  "settings_page_pregnancyInfo" : "Pregnancy Information",
+  "settings_page_changeLock" : "change the unlocking code",
+  "settings_page_contact" : "Contact Us",
+  "settings_page_dicl" : "Disclaimer",
+  "settings_page_privacy" : "Privacy Policy",
+  "settings_page_deCode" : "deactivate unlocking code",
+  "settings_page_acCode" : "activate unlocking code",
+  "settings_page_deCode_msg_ok" : "Your unlocking code was deactivated",
+  "settings_page_popUp_dialog" : "Enter Your Old Password",
+  "settings_page_popUp_dialog_btn_submit" : "Submit",
+
+
+  "disclaimer_page_title" : "Disclaimer",
+  "disclaimer_page_section1_title" : "Welcome",
+  "disclaimer_page_section1_text" : "In this user agreement, we wish to express the responsibility for the use and scope of the information provided by this application as well as the copyright details. \n\n(Last updated: September 2019)",
+  "disclaimer_page_section2_title" : "Medical content warning",
+  "disclaimer_page_section2_text" : "The information and material contained in this application are intended only to provide general information to the user. The app is not intended to diagnose any health problems or replace a medical specialist, nor are general recommendations considered medical treatment. \n\nThe information presented in the app may be annotated by the user with his doctor or medical staff. The main limitation of the information sources present in this application is the inability to take into account the particular circumstances of the user's health. If you have any general health problems or problems related to your pregnancy, please consult your physician.\n Any user should read this User Agreement and be subject to the terms thereof.",
+  "disclaimer_page_section3_title" : "Responsibility for the use of the application",
+  "disclaimer_page_section3_text" : "This app is not responsible for how to record any contractions, kicks, or other estimates or calculations described in this app. \n nUse of the app and its tools is subject to the discretion of user and will never replace the professional advice of your doctor or the healthcare professional treating you. The user assumes all risks associated with the use of the application and, in this sense, he must accept the conditions of use of the application.",
+  "disclaimer_page_section4_title" : "Warning",
+  "disclaimer_page_section4_text" : "The user assumes all responsibility and risk for the use of the application. Under no circumstances can the owners of the application, its creators and employees, or any person involved in the creation or maintenance of the application, be held responsible for any direct, indirect, accidental, special and / or damage consecutive which may arise directly or indirectly with the user and the continuation of her pregnancy due to improper use of this application, or resulting directly or indirectly from errors, omissions, interruptions, defects, failure of communication or use, theft, destruction or unlawful use.",
+  "disclaimer_page_section5_title" : "Disclaimer of warranty liability",
+  "disclaimer_page_section5_text" : "The application does not guarantee that the medical information provided is not free from errors. There can be no assurance that files which may be downloaded through 'Apple Store' or 'Google Play Store' are free from viruses or similar contamination, or from destructive functions. You expressly agree that the risk as to the quality and performance of the products and the accuracy or completeness of the content shall be borne solely by the user. \n\nThe application cannot be held responsible for any direct, indirect, accidental, special or consequential damage that may be caused to the user or the baby by the use or inability to use this product, even if it has been informed of the possibility of such damage",
+
+
+  "privacyPolicy_page_title": "Privacy Policy",
+  "privacyPolicy_page_section1_title": "Welcome",
+  "privacyPolicy_page_section1_text": "This privacy and security policy is designed to inform you of our practices regarding the collection, use and disclosure of information provided in this application. Read the entire Privacy and Security Policy before using the app and providing information. \n\n This application allows you to consult your personal medical record for the management and control of pregnancy. It also allows you to collect, add, store and share health information directly or indirectly related to pregnancy. You can also consult general information about pregnancy.",
+  "privacyPolicy_page_section2_title": "Access security",
+  "privacyPolicy_page_section2_text": "To access the application, the user is required to enter a password to authenticate, as well as the option to add an unlock code to secure access to the application once the user is is authenticated. The application stores the access information provided in a secure and encrypted manner and it is not reused for other purposes, nor shared, nor sold to third parties.",
+  "privacyPolicy_page_section3_title": "Collection of personal health information",
+  "privacyPolicy_page_section3_text": "Once you access the app, the user is allowed to save the following information stored locally on the device or on the server in a fully secure and encrypted format: Quantity and duration of contractions, Number of kicks Baby, Taking Calendar Appointments, Weight and Blood Pressure Measurements.",
+  "privacyPolicy_page_section4_title": "Sharing of personal health information",
+  "privacyPolicy_page_section4_text": "A core value of the app is the ability to share your health information with people and services that can help achieve their health goals, in this case with regards to pregnancy. For example, you can share records of health information that you control with the following: Manage your personal health information and share it with your family and friends, view and share information with your healthcare professional or with medical personnel in the event of an emergency.",
+  "privacyPolicy_page_section5_title": "Use and security of your personal health information",
+  "privacyPolicy_page_section5_text": "\nPersonal information collected through the Application, including all health-related information described in this Privacy and Security Policy, is not used, disclosed to third parties, or re-used for any commercial purpose whatsoever. circumstances.\n",
+  "privacyPolicy_page_section6_title": "Deletion of personal health information",
+  "privacyPolicy_page_section6_text": "When the user deletes some or all of the health information provided to the app, that information cannot be restored because it is completely deleted from the local or hosted database where it is stored encrypted.\n",
+  "privacyPolicy_page_section7_title": "Changes in this privacy and security policy",
+  "privacyPolicy_page_section7_text": "We may update this privacy and security policy from time to time. In this case, we will also revise the \\'Last Updated\\' date at the top of this Privacy and Security Policy. In case of major changes, we will notify you by email or by placing a prominent notice on the main screen to access the application. It is recommended that you periodically review this privacy and security policy to stay informed of how we are helping to protect the personal information we collect. \\n\\n Your continued use of the app constitutes your acceptance of this privacy policy. and security and any relevant updates.",
+
+
+  "info_page_title": "Information",
+  "info_page_cnx_error_msg": "You need internet connection to access this page",
+
+  "phr_page_title": "Personal Health Record",
+  "phr_page_noPhrYet_msg": "You do not have a PHR yet",
+  "phr_page_personalProfile_title": "Personal Information",
+  "phr_page_medicalProfile_title": "Medical Information",
+  "phr_page_field_mobile": "Mobile",
+  "phr_page_field_Birthday": "Birthday",
+  "phr_page_field_FamilySituation": "Family Situation",
+  "phr_page_field_Address": "Address",
+  "phr_page_field_AgeofMarriage": "Age of Marriage",
+  "phr_page_field_Profession": "Profession",
+  "phr_page_field_Instruction": "Instruction",
+  "phr_page_field_Height": "Height",
+  "phr_page_field_Doctor": "Doctor",
+  "phr_page_field_Blood": "Blood group",
+  "phr_page_field_Pre_pregnancyWeight": "Pre-pregnancy weight",
+  "phr_page_field_ExpectedDateOfBirth": "Expected date of birth",
+  "phr_page_field_Children": "Children number",
+  "phr_page_field_previousPregnancies": "Number of previous pregnancies",
+  "phr_page_field_Chronic": "Chronic diseases",
+  "phr_page_field_Genetic": "Genetic diseases",
+  "phr_page_field_Contraceptive": "Contraceptive method used",
+  "phr_page_field_Surgical": "Surgical history",
+  "phr_page_field_Gynecological": "Gynecological history",
+  "phr_page_field_Obstetrical": "Obstetrical history"
+
+
+
+}
