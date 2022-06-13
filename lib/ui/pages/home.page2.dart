@@ -34,14 +34,35 @@ class _HomePageState extends State<HomePage2> {
   var _weekImage;
   var firstColor = Color(0xffff80ab), secondColor = Color(0xffe91e63);
 
-  // late DateTime dpaFromPrefFormat ;
-  // late DateTime lastPeriodFromPrefFormat ;
+  Future<void> onClick() async {
+    DateTime? newDateTime = await showRoundedDatePicker(
+      context: context,
+      locale: Localizations.localeOf(context),
+      theme: ThemeData(primarySwatch: Colors.pink),
+      firstDate: DateTime(DateTime.now().year - 1),
+    );
+    //if cancel
+    if (newDateTime == null) return;
+    //if Okay
+    var lastP;
+    setState(() {
+      lastPeriodDate = newDateTime;
+      lastP = lastPeriodDate.day.toString() +
+          '/' +
+          lastPeriodDate.month.toString() +
+          '/' +
+          lastPeriodDate.year.toString();
+      _lastPeriodFromPref = lastP;
+      globals.lastPeriodDate = _lastPeriodFromPref;
+      _dpaFromPref = _HomeServices.calculeDPA(lastP);
+    });
+    _preferencesService.saveLastPeriodDate(lastP);
+    _preferencesService.saveDPA(_HomeServices.calculeDPA(lastP));
+    //Navigator.pushNamedAndRemoveUntil(context, "/homePage", (_) => false);
+    initImage();
+  }
 
-  @override
-  void initState() {
-    super.initState();
-    getDpaFromPref();
-    getLastPeriodFromPref();
+  void initImage() async{
     int pregWeek;
     if (globals.lastPeriodDate != null) {
       pregWeek = _HomeServices.gePregWeek(globals.lastPeriodDate);
@@ -69,6 +90,13 @@ class _HomePageState extends State<HomePage2> {
       });
       getDpaFromPref();
     }
+  }
+  @override
+  void initState() {
+    super.initState();
+    getDpaFromPref();
+    getLastPeriodFromPref();
+    initImage();
     //getPhoto();
   }
 
@@ -140,7 +168,10 @@ class _HomePageState extends State<HomePage2> {
                       backgroundColor: Colors.grey,
                     ),
                     OutlinedButton.icon(// foreground
-                      onPressed: () { Navigator.pushNamed(context, "/lastPeriod"); },
+                      onPressed: () {
+                        onClick();
+                        //Navigator.pushNamed(context, "/lastPeriod");
+                        },
                       icon: const Icon(Icons.create),
                       label: const Text('Enter last period date'),
                     )
@@ -160,7 +191,10 @@ class _HomePageState extends State<HomePage2> {
                         ),
                       ),
                     OutlinedButton.icon(// foreground
-                      onPressed: () { Navigator.pushNamed(context, "/lastPeriod"); },
+                      onPressed: () {
+                        onClick();
+                        //Navigator.pushNamed(context, "/lastPeriod");
+                        },
                       icon: const Icon(Icons.create),
                       label: const Text('Change Period Date'),
                     )
