@@ -9,6 +9,7 @@ import 'package:ma_grossesse/ui/pages/createAccount.page.dart';
 import 'package:ma_grossesse/ui/pages/createPassword.page.dart';
 import 'package:ma_grossesse/ui/pages/disclaimer.page.dart';
 import 'package:ma_grossesse/ui/pages/home.page.dart';
+import 'package:ma_grossesse/ui/pages/home.page2.dart';
 import 'package:ma_grossesse/ui/pages/home/services/homeServices.dart';
 import 'package:ma_grossesse/ui/pages/info.page.dart';
 import 'package:ma_grossesse/ui/pages/info.page2.dart';
@@ -85,7 +86,7 @@ class _MyAppState extends State<MyApp>{
       title: 'My Pregnancy',
       theme: CustomTheme.lightTheme,
       routes: {
-        '/homePage': (context) => HomePage(),
+        '/homePage': (context) => HomePage2(),
         '/createPasswordPage' : (context) => CreatePasswordPage(),
         '/passwordAuthPage' : (context) => PasswordAthenPage(),
         '/loginPage' : (context) => LoginPage(),

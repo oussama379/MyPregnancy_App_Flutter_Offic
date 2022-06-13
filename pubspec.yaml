@@ -52,10 +52,13 @@ dependencies:
   flutter_rounded_date_picker:
 
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   liquid_progress_indicator: ^0.4.0
+  ff_navigation_bar: ^0.1.5
+  nice_button: ^0.1.7
 
 dev_dependencies:
   flutter_test:

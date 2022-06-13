@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Ma Grossesse - Les Orangers'),
+          title: Text('MyPregnancy'),
         ),
         body: Center(
           child: ListView(

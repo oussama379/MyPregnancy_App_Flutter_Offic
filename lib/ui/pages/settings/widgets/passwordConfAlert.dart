@@ -18,7 +18,6 @@ class MyAlertDialog extends StatefulWidget {
   @override
   MyAlertDialogState createState() => MyAlertDialogState();
 }
-//TODO translate some text (PopUpDialogue)
 class MyAlertDialogState extends State<MyAlertDialog> {
 
   // for this example, it's safe to instantiate the controller inline
