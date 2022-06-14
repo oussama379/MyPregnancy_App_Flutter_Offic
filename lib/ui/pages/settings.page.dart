@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:ma_grossesse/ui/pages/settings/widgets/listItem.widget.dart';
@@ -71,7 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
           title: Text(AppLocalizations.of(context)!.translate('settings_page_title')),
         ),
         body: ListView(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.only(top: 8),
           children: <Widget>[
             ListItem(text: AppLocalizations.of(context)!.translate('settings_page_logout'), icon: Icons.logout_rounded, onTap: (){
               FirebaseAuth.instance.signOut();
@@ -79,10 +80,10 @@ class _SettingsPageState extends State<SettingsPage> {
               Navigator.pushNamedAndRemoveUntil(context, "/loginPage", (_) => false);
               print('logged out');
             }),
-            Divider(indent: 30, endIndent: 30, color: Colors.black87),
-            ListItem(text: AppLocalizations.of(context)!.translate('settings_page_pregnancyInfo'), icon: Icons.info_outline_rounded, onTap: () async {
-
-            }),
+            // Divider(indent: 30, endIndent: 30, color: Colors.black87),
+            // ListItem(text: AppLocalizations.of(context)!.translate('settings_page_pregnancyInfo'), icon: Icons.info_outline_rounded, onTap: () async {
+            //
+            // }),
             Divider(indent: 30, endIndent: 30, color: Colors.black87),
             ListItem(text: AppLocalizations.of(context)!.translate('settings_page_changeLock'), icon: Icons.vpn_key_outlined, onTap: () async {
               print(wantPassVar);

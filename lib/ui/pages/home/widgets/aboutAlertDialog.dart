@@ -12,9 +12,9 @@ class MyAlertDialogState extends State<AboutAlertDialog> {
 
   Widget build(BuildContext context) {
     return AlertDialog(
-        titlePadding:  EdgeInsets.only(top: 10,bottom: 10.0, left: 20),
+        titlePadding:  EdgeInsets.only(top: 10,bottom: 10.0, left: 20, right: 20),
         contentPadding: EdgeInsets.all(10.0),
-        title : Text('About app'),
+        title : Text(AppLocalizations.of(context)!.translate('home_page_drawer_aboutUs')),
         content :  Container(
           width: 200,
           height: 270,
@@ -31,7 +31,7 @@ class MyAlertDialogState extends State<AboutAlertDialog> {
             )),
       actions: <Widget>[
         TextButton(
-          child: const Text('Cancel'),
+          child: Text(AppLocalizations.of(context)!.translate('home_page_LPD_alert_conf')),
           onPressed: () {
             Navigator.of(context).pop();
           },

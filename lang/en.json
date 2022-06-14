@@ -130,8 +130,24 @@
   "phr_page_field_Contraceptive": "Contraceptive method used",
   "phr_page_field_Surgical": "Surgical history",
   "phr_page_field_Gynecological": "Gynecological history",
-  "phr_page_field_Obstetrical": "Obstetrical history"
+  "phr_page_field_Obstetrical": "Obstetrical history",
 
+  "home_page_drawer_settings": "Settings",
+  "home_page_drawer_aboutUs": "About app",
 
-
+  "home_page_drawer_EDD": "Expected date of delivery : ",
+  "home_page_drawer_InWeek": "You are in week : ",
+  "home_page_ImagesMsg": "Here you will see a week-by-week fetal development images",
+  "home_page_LastPeriodButton": "Enter last period date",
+  "home_page_ChangeLastPeriodButton": "Change Period Date",
+  "home_page_PHR": "PHR",
+  "home_page_INFO": "Information",
+  "home_page_Navig_Btn_0": "Home",
+  "home_page_Navig_Btn_1": "Appointments",
+  "home_page_Navig_Btn_2": "Counters",
+  "home_page_Navig_Btn_3": "Measurements",
+  "home_page_LPD_alert_title": "Invalid Period Date",
+  "home_page_LPD_alert_msg": "Please enter a valid last period date",
+  "home_page_LPD_alert_conf": "Ok"
 }
+

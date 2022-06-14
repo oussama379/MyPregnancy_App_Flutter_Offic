@@ -22,6 +22,8 @@ import 'package:ma_grossesse/ui/pages/recoverPassword.page.dart';
 import 'package:ma_grossesse/ui/pages/settings.page.dart';
 import 'package:ma_grossesse/ui/sharedServices/checkInternetConnection.dart';
 import './theme/custom_theme.dart';
+import 'package:flutter/services.dart';
+
 
 import 'package:firebase_core/firebase_core.dart';
 
@@ -36,6 +38,12 @@ var UID;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Disable Landscape Mode
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
   FirebaseApp firebaseApp = await Firebase.initializeApp();
   // injection d'independences in locator.dart file
   setupDependencyInjection();

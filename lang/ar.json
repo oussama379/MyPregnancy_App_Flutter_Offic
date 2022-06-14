@@ -116,8 +116,26 @@
   "phr_page_field_Contraceptive": "طريقة منع الحمل المستخدمة",
   "phr_page_field_Surgical": "التاريخ الجراحي",
   "phr_page_field_Gynecological": "تاريخ أمراض النساء",
-  "phr_page_field_Obstetrical": "تاريخ الولادة"
-  
+  "phr_page_field_Obstetrical": "تاريخ الولادة",
+
+  "home_page_drawer_settings": "الإعدادات",
+  "home_page_drawer_aboutUs": "حول التطبيق",
+
+  "home_page_drawer_EDD": "التاريخ المتوقع للتسليم : ",
+  "home_page_drawer_InWeek": "أنتي في الأسبوع : ",
+  "home_page_ImagesMsg": "هنا سترين صور نمو الجنين أسبوعًا بعد أسبوع" ,
+  "home_page_LastPeriodButton": "أدخلي تاريخ آخر دورة شهرية" ,
+  "home_page_ChangeLastPeriodButton": "تغيير تاريخ دورة الشهرية",
+  "home_page_PHR": "السجل الطبي",
+  "home_page_INFO": "المعلومات",
+  "home_page_Navig_Btn_0": "الرئيسية" ,
+  "home_page_Navig_Btn_1": "المواعيد",
+  "home_page_Navig_Btn_2": "العدادات" ,
+  "home_page_Navig_Btn_3": "القياسات" ,
+  "home_page_Navig_Btn_2": "العدادات" ,
+  "home_page_LPD_alert_title": "تاريخ دورة الشهرية غير صالح",
+  "home_page_LPD_alert_msg": "الرجاء إدخال تاريخ صالح" ,
+  "home_page_LPD_alert_conf": "حسنًا"
   
 
 }

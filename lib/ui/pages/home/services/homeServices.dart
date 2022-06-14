@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../app_localizations.dart';
 
 class HomeServices{
 
@@ -98,7 +101,32 @@ class HomeServices{
     }
 
   HomeServices();
-
+  Future<void> InvalidPeriodDateDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(AppLocalizations.of(context)!.translate('home_page_LPD_alert_title')),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children:  <Widget>[
+                Text(AppLocalizations.of(context)!.translate('home_page_LPD_alert_msg')),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(AppLocalizations.of(context)!.translate('home_page_LPD_alert_conf')),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
 
 

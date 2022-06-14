@@ -2,6 +2,7 @@ import 'package:ff_navigation_bar/ff_navigation_bar.dart';
 import 'package:ff_navigation_bar/ff_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app_localizations.dart';
 import '../../../../locator.dart';
 import '../../../../preferencesService.dart';
 
@@ -38,18 +39,24 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
       },
       items: [
         FFNavigationBarItem(
+          iconData: Icons.home,
+          label: AppLocalizations.of(context)!.translate('home_page_Navig_Btn_0'),
+          selectedBackgroundColor: Colors.pinkAccent,
+          selectedForegroundColor: Colors.white,
+        ),
+        FFNavigationBarItem(
           iconData: Icons.calendar_today,
-          label: 'Appointments',
+          label: AppLocalizations.of(context)!.translate('home_page_Navig_Btn_1'),
           selectedBackgroundColor: Colors.pinkAccent,
           selectedForegroundColor: Colors.white,
         ),
         FFNavigationBarItem(
           iconData: Icons.timer,
-          label: 'counters',
+          label: AppLocalizations.of(context)!.translate('home_page_Navig_Btn_2'),
         ),
         FFNavigationBarItem(
           iconData: Icons.monitor_weight,
-          label: 'measurements',
+          label: AppLocalizations.of(context)!.translate('home_page_Navig_Btn_3'),
         ),
       ],
     );

@@ -35,27 +35,11 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 color: Colors.pink.shade300
             ),
           ),
-          // ListTile(
-          //   leading: Icon(
-          //     Icons.file_copy,
-          //   ),
-          //   title: const Text('Phr'),
-          //   onTap: () {
-          //     Navigator.pushNamed(context, '/pHRPage');
-          //   },
-          // ),
-          // Divider(
-          //   indent: 30,
-          //   endIndent: 30,
-          //   height: 1,
-          //   thickness: 1,
-          // ),
-
           ListTile(
             leading: Icon(
               Icons.settings,
             ),
-            title: const Text('Settings'),
+            title: Text(AppLocalizations.of(context)!.translate('home_page_drawer_settings')),
             onTap: () {
               Navigator.pushNamed(context, '/settingsPage');
             },
@@ -89,7 +73,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
             leading: Icon(
               Icons.info,
             ),
-            title: Text('About app'),
+            title: Text(AppLocalizations.of(context)!.translate('home_page_drawer_aboutUs')),
             onTap: () async {
               await openDialog(context);
             },

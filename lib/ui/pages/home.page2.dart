@@ -42,7 +42,14 @@ class _HomePageState extends State<HomePage2> {
       firstDate: DateTime(DateTime.now().year - 1),
     );
     //if cancel
+    var date = new DateTime.now();
     if (newDateTime == null) return;
+    if (newDateTime.isAfter(DateTime.now()) ||
+        newDateTime
+            .isBefore(new DateTime(date.year, date.month - 9, date.day))) {
+      _HomeServices.InvalidPeriodDateDialog(context);
+      return;
+    }
     //if Okay
     var lastP;
     setState(() {
@@ -62,7 +69,7 @@ class _HomePageState extends State<HomePage2> {
     initImage();
   }
 
-  void initImage() async{
+  void initImage() async {
     int pregWeek;
     if (globals.lastPeriodDate != null) {
       pregWeek = _HomeServices.gePregWeek(globals.lastPeriodDate);
@@ -91,6 +98,7 @@ class _HomePageState extends State<HomePage2> {
       getDpaFromPref();
     }
   }
+
   @override
   void initState() {
     super.initState();
@@ -125,131 +133,162 @@ class _HomePageState extends State<HomePage2> {
         title: Text('MyPregnancy'),
       ),
       drawer: HomeDrawer(),
-      body: Column(
+      body: ListView(
         children: [
           SizedBox(
             height: 20,
           ),
-          Container(
-            child: _dpaFromPref != null
-                ? Text(
-                    'Expected date of delivery : ' +
-                        _HomeServices.calculeDPA(_lastPeriodFromPref),
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                  )
-                : Text(''),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Container(
-            child: _dpaFromPref != null
-                ? Text(
-                  'You are in week : '+ _HomeServices.gePregWeek(_lastPeriodFromPref).toString(),
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-            )
-                : Text(''),
-          ),
-            SizedBox(
-            height: 20,
-          ),
-
-          Container(
-            child: _lastPeriodFromPref == null
-                ? Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 100,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Here you will see a week-by-week fetal development images',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.center, ),
-                      ),
-                      backgroundColor: Colors.grey,
-                    ),
-                    OutlinedButton.icon(// foreground
-                      onPressed: () {
-                        onClick();
-                        //Navigator.pushNamed(context, "/lastPeriod");
-                        },
-                      icon: const Icon(Icons.create),
-                      label: const Text('Enter last period date'),
-                    )
-                  ],
-                )
-                : _weekImage != null ? Column(
-                  children: [
-                    CircleAvatar(
-                        radius: 100,
-                        child: ClipOval(
-                          child: Image.network(
-                            _weekImage,
-                            width: 190,
-                            height: 190,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    OutlinedButton.icon(// foreground
-                      onPressed: () {
-                        onClick();
-                        //Navigator.pushNamed(context, "/lastPeriod");
-                        },
-                      icon: const Icon(Icons.create),
-                      label: const Text('Change Period Date'),
-                    )
-                  ],
-                ):  CircularProgressIndicator(),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          Column(
             children: [
-              Column(
-                children: [
-                  NiceButton(
-                    mini: true,
-                    padding: const EdgeInsets.all(10),
-                    icon: Icons.pregnant_woman,
-                    gradientColors: [secondColor, firstColor],
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/infoPagePage2');
-                    },
-                  ),
-                  Text(
-                    'Information',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pinkAccent,
-                    ),
-                  )
-                ],
+              Container(
+                child: _dpaFromPref != null
+                    ? Text(
+                        AppLocalizations.of(context)!
+                                .translate('home_page_drawer_EDD') +
+                            '\n' +
+                            _HomeServices.calculeDPA(_lastPeriodFromPref),
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      )
+                    : Text(''),
               ),
-              Column(
-                children: [
-                  NiceButton(
-                    mini: true,
-                    padding: const EdgeInsets.all(10),
-                    icon: Icons.insert_drive_file_rounded,
-                    gradientColors: [secondColor, firstColor],
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/pHRPage');
-                    },
-                  ),
-                  Text(
-                    'Phr',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pinkAccent,
-                    ),
-                  )
-                ],
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                child: _dpaFromPref != null
+                    ? Text(
+                        AppLocalizations.of(context)!
+                                .translate('home_page_drawer_InWeek') +
+                            _HomeServices.gePregWeek(_lastPeriodFromPref)
+                                .toString(),
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.bold),
+                      )
+                    : Text(''),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                child: _lastPeriodFromPref == null
+                    ? Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 95,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                AppLocalizations.of(context)!
+                                    .translate('home_page_ImagesMsg'),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            backgroundColor: Colors.grey,
+                          ),
+                          OutlinedButton.icon(
+                            // foreground
+                            onPressed: () {
+                              onClick();
+                              //Navigator.pushNamed(context, "/lastPeriod");
+                            },
+                            icon: const Icon(Icons.create),
+                            label: Text(AppLocalizations.of(context)!
+                                .translate('home_page_LastPeriodButton')),
+                          )
+                        ],
+                      )
+                    : _weekImage != null
+                        ? Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 95,
+                                child: ClipOval(
+                                  child: Image.network(
+                                    _weekImage,
+                                    width: 190,
+                                    height: 190,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              OutlinedButton.icon(
+                                // foreground
+                                onPressed: () {
+                                  onClick();
+                                  //Navigator.pushNamed(context, "/lastPeriod");
+                                },
+                                icon: const Icon(Icons.create),
+                                label: Text(AppLocalizations.of(context)!
+                                    .translate(
+                                        'home_page_ChangeLastPeriodButton')),
+                              )
+                            ],
+                          )
+                        : CircularProgressIndicator(),
+              ),
+              SizedBox(
+                height: 20,
               ),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 15, top: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    NiceButton(
+                      width: 50,
+                      radius: 40,
+                      mini: true,
+                      padding: const EdgeInsets.all(10),
+                      icon: Icons.pregnant_woman,
+                      gradientColors: [secondColor, firstColor],
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/infoPagePage2');
+                      },
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.translate('home_page_INFO'),
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pinkAccent,
+                      ),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    NiceButton(
+                      width: 50,
+                      radius: 40,
+                      mini: true,
+                      padding: const EdgeInsets.all(10),
+                      icon: Icons.insert_drive_file_rounded,
+                      gradientColors: [secondColor, firstColor],
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/pHRPage');
+                      },
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.translate('home_page_PHR'),
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pinkAccent,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
           //PregnancyProgress(),
         ],

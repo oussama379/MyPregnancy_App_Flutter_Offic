@@ -124,7 +124,25 @@
   "phr_page_field_Contraceptive": "Méthode contraceptive utilisée",
   "phr_page_field_Surgical": "Historique chirurgical",
   "phr_page_field_Gynecological": "Histoire gynécologique",
-  "phr_page_field_Obstetrical": "Antécédents obstétricaux"
+  "phr_page_field_Obstetrical": "Antécédents obstétricaux",
+
+  "home_page_drawer_settings": "Paramètres",
+  "home_page_drawer_aboutUs": "À propos de l'application",
+
+  "home_page_drawer_EDD": "Date prévue de l'accouchement : ",
+  "home_page_drawer_InWeek": "Vous êtes en semaine : ",
+  "home_page_ImagesMsg": "Ici, vous verrez des images hebdomadaires du développement fœtal",
+  "home_page_LastPeriodButton": "Entrez la date des dernières règles",
+  "home_page_ChangeLastPeriodButton": "Modifier la date de la période",
+  "home_page_PHR": "DSP",
+  "home_page_INFO": "Informations",
+  "home_page_Navig_Btn_0": "Accueil",
+  "home_page_Navig_Btn_1": "Rendez-vous",
+  "home_page_Navig_Btn_2": "Compteurs",
+  "home_page_Navig_Btn_3": "Mesures",
+  "home_page_LPD_alert_title": "Date de période invalide",
+  "home_page_LPD_alert_msg": "Veuillez entrer une date de dernière période valide",
+  "home_page_LPD_alert_conf": "D'accord"
 }
 
 
