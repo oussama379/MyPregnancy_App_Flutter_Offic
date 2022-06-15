@@ -13,7 +13,7 @@ class RoundButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: SizedBox.fromSize(
-      size: Size(30, 30), // button width and height
+      size: Size(10, 10), // button width and height
       child: ClipOval(
         child: Material(
           color: color, // button color
@@ -28,7 +28,7 @@ class RoundButton extends StatelessWidget {
                   buttonText,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 12.5,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                   //   style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 2.0),

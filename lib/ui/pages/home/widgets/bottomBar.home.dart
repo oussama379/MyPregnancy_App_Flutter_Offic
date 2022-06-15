@@ -16,9 +16,13 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
   final _preferencesService = locator.get<PreferencesService>();
   int selectedIndex = 0;
   @override
+
+
+
   Widget build(BuildContext context) {
     return FFNavigationBar(
       theme: FFNavigationBarTheme(
+        //itemWidth: 40.0,
         barBackgroundColor: Colors.white,
         selectedItemBorderColor: Colors.pink,
         selectedItemBackgroundColor: Colors.pinkAccent,
@@ -30,6 +34,9 @@ class _HomeBottomBarState extends State<HomeBottomBar> {
         setState(() {
           selectedIndex = index;
           print(index);
+          if(index == 3){
+            Navigator.pushNamed(context, '/measurements');
+          }
           if(index == 0 ){
             //TODO To be removed
             _preferencesService.deleteDPA();

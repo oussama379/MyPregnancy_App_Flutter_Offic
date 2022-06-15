@@ -15,11 +15,13 @@ import 'package:ma_grossesse/ui/pages/info.page.dart';
 import 'package:ma_grossesse/ui/pages/info.page2.dart';
 import 'package:ma_grossesse/ui/pages/lastPeriod.page.dart';
 import 'package:ma_grossesse/ui/pages/login.page.dart';
+import 'package:ma_grossesse/ui/pages/measurements.page.dart';
 import 'package:ma_grossesse/ui/pages/passwordAuth.page.dart';
 import 'package:ma_grossesse/ui/pages/phr.page.dart';
 import 'package:ma_grossesse/ui/pages/privacyPolicy.page.dart';
 import 'package:ma_grossesse/ui/pages/recoverPassword.page.dart';
 import 'package:ma_grossesse/ui/pages/settings.page.dart';
+import 'package:ma_grossesse/ui/pages/weightMeasurements.page.dart';
 import 'package:ma_grossesse/ui/sharedServices/checkInternetConnection.dart';
 import './theme/custom_theme.dart';
 import 'package:flutter/services.dart';
@@ -107,6 +109,8 @@ class _MyAppState extends State<MyApp>{
         '/infoPagePage2' : (context) => InfoPage2(),
         '/pHRPage' : (context) => PHRPage(),
         '/lastPeriod' : (context) => LastPeriod(),
+        '/measurements' : (context) => MeasurementsPage(),
+        '/weightMeasurements' : (context) => WeightMeasure(),
       },
       //TODO to be change to route
       initialRoute: route,

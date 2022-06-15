@@ -59,6 +59,8 @@ dependencies:
   liquid_progress_indicator: ^0.4.0
   ff_navigation_bar: ^0.1.5
   nice_button: ^0.1.7
+  material_segmented_control: ^3.1.2
+  flutter_datetime_picker: ^1.5.1
 
 dev_dependencies:
   flutter_test:
