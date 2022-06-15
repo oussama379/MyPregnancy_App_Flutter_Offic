@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>943477980428-6e1orpl50lffgv51uq5rg8pgo8k7s9nr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.943477980428-6e1orpl50lffgv51uq5rg8pgo8k7s9nr</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBuf4bKSzS_ClcFVrphGjMYANsx0WNuZO8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>943477980428</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.androidhire.loginwithfirebase</string>
+	<key>PROJECT_ID</key>
+	<string>peer-pregnency</string>
+	<key>STORAGE_BUCKET</key>
+	<string>peer-pregnency.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:943477980428:ios:df481346498dad811c5d29</string>
+	<key>DATABASE_URL</key>
+	<string>https://peer-pregnency.firebaseio.com</string>
+</dict>
+</plist>
