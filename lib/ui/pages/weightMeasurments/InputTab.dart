@@ -56,8 +56,7 @@ class _InputPageState extends State<InputPage> {
           ),
           OutlinedButton.icon(
             style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.only(
-                    left: 35.0, right: 35.0, top: 17, bottom: 17),
+                padding: EdgeInsets.only(left: 35.0, right: 35.0, top: 17, bottom: 17),
                 side: BorderSide(width: .6)),
             // foreground
             onPressed: () {
@@ -137,7 +136,7 @@ class _InputPageState extends State<InputPage> {
                   if (_formKey.currentState!.validate()) {
                     print("Successful");
                     WeightModel W = _weightRepo.prepareWeightModel(
-                        double.parse(_weight.text), _date!, _time!);
+                        int.parse(_weight.text), _date!, _time!);
                     print(W.toString());
                     print(W.toJson());
                     _weightRepo.SaveWeightMeasurements(W.toJson());
@@ -162,4 +161,6 @@ class _InputPageState extends State<InputPage> {
       ),
     ));
   }
+
+
 }

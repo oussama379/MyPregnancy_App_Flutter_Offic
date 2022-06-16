@@ -1,17 +1,19 @@
 import 'package:intl/intl.dart';
 
 class WeightModel {
-  double weight;
+  int weight;
   String date;
   String time;
 
   WeightModel(this.weight, this.date, this.time);
 
 
-  WeightModel.fromJson(Map<dynamic, dynamic> json)
-      : weight = json['poids'] as double,
-        date = json['date'] as String,
-        time = json['time'] as String;
+  factory WeightModel.fromJson(Map<dynamic, dynamic> json){
+      final weight = json['poids'] as int;
+      final date = json['date'] as String;
+      final time = json['time'] as String;
+      return WeightModel(weight, date, time);
+  }
 
   Map<dynamic, dynamic> toJson() =>
       {

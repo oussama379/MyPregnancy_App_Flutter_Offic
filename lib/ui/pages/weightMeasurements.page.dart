@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ma_grossesse/ui/pages/weightMeasurments/InputPage.dart';
+import 'package:ma_grossesse/ui/pages/weightMeasurments/HistoryTab.dart';
+import 'package:ma_grossesse/ui/pages/weightMeasurments/InputTab.dart';
+import 'package:ma_grossesse/ui/pages/weightMeasurments/chartTab.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
 
 class WeightMeasure extends StatefulWidget {
@@ -22,34 +24,31 @@ class _WeightMeasureState extends State<WeightMeasure> {
       appBar: AppBar(
         title: Text('Weight Measurements'),
       ),
-      body: SingleChildScrollView(
-            child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              MaterialSegmentedControl(
-                children: _children,
-                selectionIndex: _currentSelection,
-                borderColor: Colors.grey,
-                selectedColor: Colors.pinkAccent,
-                unselectedColor: Colors.white,
-                borderRadius: 6.0,
-                verticalOffset: 12.0,
-                horizontalPadding: EdgeInsets.all(20),
-                onSegmentChosen: (index) {
-                  setState(() {
-                    _currentSelection = index as int;
-                  });
-                },
-              ),
-              if(_currentSelection == 0)
-              Center(child : InputPage()),
-              if(_currentSelection == 1)
-              Center(child: Text('History')),
-              if(_currentSelection == 2)
-              Center(child: Text('Chart')),
-            ]),
-      ),
+      body: ListView(
+      children: [
+        MaterialSegmentedControl(
+          children: _children,
+          selectionIndex: _currentSelection,
+          borderColor: Colors.grey,
+          selectedColor: Colors.pinkAccent,
+          unselectedColor: Colors.white,
+          borderRadius: 6.0,
+          verticalOffset: 12.0,
+          horizontalPadding: EdgeInsets.all(20),
+          onSegmentChosen: (index) {
+            setState(() {
+              _currentSelection = index as int;
+            });
+          },
+        ),
+
+        if(_currentSelection == 0)
+        Center(child : InputPage()),
+        if(_currentSelection == 1)
+          HistoryPage(),
+        if(_currentSelection == 2)
+        Center(child: ChartPage()),
+      ]),
     );
   }
 }
