@@ -4,8 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightModel.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightRepo.dart';
 
-import '../../../locator.dart';
-import '../../shared/toasts.dart';
+import '../../../../locator.dart';
+import '../../../shared/toasts.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -56,7 +56,7 @@ class _InputPageState extends State<InputPage> {
           ),
           OutlinedButton.icon(
             style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.only(left: 35.0, right: 35.0, top: 17, bottom: 17),
+                //padding: EdgeInsets.only(left: 35.0, right: 35.0, top: 17, bottom: 17),
                 side: BorderSide(width: .6)),
             // foreground
             onPressed: () {

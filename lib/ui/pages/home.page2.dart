@@ -17,6 +17,7 @@ import 'home/widgets/homeButtons.home.dart';
 import 'home/widgets/progressCircle.home.dart';
 import 'home/widgets/roundButton.home.dart';
 import 'package:nice_button/nice_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../globals.dart' as globals;
 
@@ -26,6 +27,8 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage2> {
+
+
   final _preferencesService = locator.get<PreferencesService>();
   DateTime lastPeriodDate = new DateTime(00, 00, 0000);
   final _HomeServices = locator.get<HomeServices>();
@@ -128,6 +131,7 @@ class _HomePageState extends State<HomePage2> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('MyPregnancy'),
@@ -148,7 +152,7 @@ class _HomePageState extends State<HomePage2> {
                             '\n' +
                             _HomeServices.calculeDPA(_lastPeriodFromPref),
                         style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
+                            fontSize: 17.sp, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       )
                     : Text(''),
@@ -164,7 +168,7 @@ class _HomePageState extends State<HomePage2> {
                             _HomeServices.gePregWeek(_lastPeriodFromPref)
                                 .toString(),
                         style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
+                            fontSize: 17.sp, fontWeight: FontWeight.bold),
                       )
                     : Text(''),
               ),
@@ -176,7 +180,7 @@ class _HomePageState extends State<HomePage2> {
                     ? Column(
                         children: [
                           CircleAvatar(
-                            radius: 95,
+                            radius: 95.r,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -184,7 +188,7 @@ class _HomePageState extends State<HomePage2> {
                                     .translate('home_page_ImagesMsg'),
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.bold, fontSize: 15.sp),
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -206,7 +210,7 @@ class _HomePageState extends State<HomePage2> {
                         ? Column(
                             children: [
                               CircleAvatar(
-                                radius: 95,
+                                radius: 95.r,
                                 child: ClipOval(
                                   child: Image.network(
                                     _weekImage,
@@ -257,7 +261,7 @@ class _HomePageState extends State<HomePage2> {
                     Text(
                       AppLocalizations.of(context)!.translate('home_page_INFO'),
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 15.0.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.pinkAccent,
                       ),
@@ -280,7 +284,7 @@ class _HomePageState extends State<HomePage2> {
                     Text(
                       AppLocalizations.of(context)!.translate('home_page_PHR'),
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 15.0.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.pinkAccent,
                       ),

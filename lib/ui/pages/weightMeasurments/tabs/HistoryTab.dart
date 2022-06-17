@@ -6,8 +6,8 @@ import 'package:ma_grossesse/ui/pages/weightMeasurments/historyModel.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightModel.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightRepo.dart';
 
-import '../../../locator.dart';
-import '../../shared/toasts.dart';
+import '../../../../locator.dart';
+import '../../../shared/toasts.dart';
 
 class HistoryPage extends StatefulWidget {
   HistoryPage();
@@ -58,9 +58,9 @@ class _HistoryPageState extends State<HistoryPage> {
               physics: NeverScrollableScrollPhysics(),
               itemCount: weightsList.length,
               itemBuilder: (context, index) {
-                print(index);
-                print(weightsList[index].toString());
-                print(weightsListKeys[index]);
+                // print(index);
+                // print(weightsList[index].toString());
+                // print(weightsListKeys[index]);
                 return Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: Container(

@@ -18,7 +18,9 @@ class WeightRepo {
     String timeToBeSaved = DateFormat.jm().format(time);
     String dateToBeSaved = DateFormat('dd/MM/yyyy').format(date);
     int weightToBeSaved = weight;
-    return WeightModel(weightToBeSaved, dateToBeSaved, timeToBeSaved);
+    String dateIntString  = DateFormat('yyyy/MM/dd').format(date).replaceAll('/', '');
+    int datInt = int.parse(dateIntString);
+    return WeightModel(weightToBeSaved, dateToBeSaved, timeToBeSaved, datInt);
   }
 
   Future<bool> deleteWeightMeasurement(String key) async {
@@ -52,7 +54,7 @@ class WeightRepo {
       .child('Patientes')
       .child(globals.UID.toString())
       .child("mesures")
-      .child("poids");
+      .child("poids").orderByChild('dateInt');
 
   Query getWeightHistory() {
     return _weightHistory;

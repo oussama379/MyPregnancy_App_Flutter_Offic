@@ -72,6 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
           title: Text(AppLocalizations.of(context)!.translate('settings_page_title')),
         ),
         body: ListView(
+
           padding: const EdgeInsets.only(top: 8),
           children: <Widget>[
             ListItem(text: AppLocalizations.of(context)!.translate('settings_page_logout'), icon: Icons.logout_rounded, onTap: (){
