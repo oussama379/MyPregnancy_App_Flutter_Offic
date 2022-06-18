@@ -8,14 +8,14 @@ import '../../../../globals.dart' as globals;
 
 import '../../../../locator.dart';
 import '../../../shared/toasts.dart';
-import '../widget/line_chart_widget.dart';
+import '../widget/line_chart_widget_pressure.dart';
 
-class ChartPage extends StatefulWidget {
+class ChartPagePressure extends StatefulWidget {
   @override
-  State<ChartPage> createState() => _ChartPageState();
+  State<ChartPagePressure> createState() => _ChartPageStatePressure();
 }
 
-class _ChartPageState extends State<ChartPage> {
+class _ChartPageStatePressure extends State<ChartPagePressure> {
   final _weightRepo = locator.get<WeightRepo>();
   @override
   void initState() {

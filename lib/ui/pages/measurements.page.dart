@@ -39,7 +39,7 @@ class MeasurementsPage extends StatelessWidget {
               ),
               color:  Colors.pinkAccent,
               onTap: () {
-                //Navigator.pushNamed(context, '/infoPagePage2');
+                Navigator.pushNamed(context, '/pressureMeasurements');
               }),
         ],
       ),

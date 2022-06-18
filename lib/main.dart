@@ -18,6 +18,7 @@ import 'package:ma_grossesse/ui/pages/login.page.dart';
 import 'package:ma_grossesse/ui/pages/measurements.page.dart';
 import 'package:ma_grossesse/ui/pages/passwordAuth.page.dart';
 import 'package:ma_grossesse/ui/pages/phr.page.dart';
+import 'package:ma_grossesse/ui/pages/pressureMeasurements.page.dart';
 import 'package:ma_grossesse/ui/pages/privacyPolicy.page.dart';
 import 'package:ma_grossesse/ui/pages/recoverPassword.page.dart';
 import 'package:ma_grossesse/ui/pages/settings.page.dart';
@@ -111,6 +112,7 @@ class _MyAppState extends State<MyApp>{
         '/lastPeriod' : (context) => LastPeriod(),
         '/measurements' : (context) => MeasurementsPage(),
         '/weightMeasurements' : (context) => WeightMeasure(),
+        '/pressureMeasurements' : (context) => PressureMeasure(),
       },
       //TODO to be change to route
       initialRoute: route,

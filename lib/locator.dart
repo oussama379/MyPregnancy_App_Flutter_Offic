@@ -7,6 +7,7 @@ import 'package:ma_grossesse/ui/pages/information/repo/monthRepo.dart';
 import 'package:ma_grossesse/ui/pages/login/loginServices.dart';
 import 'package:ma_grossesse/ui/pages/passwordAuth/passwordAuthServices.dart';
 import 'package:ma_grossesse/ui/pages/phr/repo/phrRepo.dart';
+import 'package:ma_grossesse/ui/pages/pressureMeasurments/pressureRepo.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightRepo.dart';
 import 'package:ma_grossesse/ui/shared/toasts.dart';
 
@@ -21,4 +22,5 @@ void setupDependencyInjection(){
   locator.registerLazySingleton<PhrDao>(() => PhrDao());
   locator.registerLazySingleton<HomeServices>(() => HomeServices());
   locator.registerLazySingleton<WeightRepo>(() => WeightRepo());
+  locator.registerLazySingleton<PressureRepo>(() => PressureRepo());
 }
