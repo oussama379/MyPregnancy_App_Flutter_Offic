@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ma_grossesse/preferencesService.dart';
+import 'package:ma_grossesse/ui/pages/appointements.page.dart';
 import 'package:ma_grossesse/ui/pages/createAccount.page.dart';
 import 'package:ma_grossesse/ui/pages/createPassword.page.dart';
 import 'package:ma_grossesse/ui/pages/disclaimer.page.dart';
@@ -113,6 +114,7 @@ class _MyAppState extends State<MyApp>{
         '/measurements' : (context) => MeasurementsPage(),
         '/weightMeasurements' : (context) => WeightMeasure(),
         '/pressureMeasurements' : (context) => PressureMeasure(),
+        '/appointementsCalendarPage' : (context) => AppointmentsCalendarPage(),
       },
       //TODO to be change to route
       initialRoute: route,

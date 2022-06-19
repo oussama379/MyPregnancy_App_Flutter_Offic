@@ -27,8 +27,6 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage2> {
-
-
   final _preferencesService = locator.get<PreferencesService>();
   DateTime lastPeriodDate = new DateTime(00, 00, 0000);
   final _HomeServices = locator.get<HomeServices>();
@@ -188,7 +186,8 @@ class _HomePageState extends State<HomePage2> {
                                     .translate('home_page_ImagesMsg'),
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.bold, fontSize: 15.sp),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15.sp),
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -262,7 +261,7 @@ class _HomePageState extends State<HomePage2> {
                       AppLocalizations.of(context)!.translate('home_page_INFO'),
                       style: TextStyle(
                         fontSize: 15.0.sp,
-                        fontWeight: FontWeight.bold,
+
                         color: Colors.pinkAccent,
                       ),
                     )
@@ -285,7 +284,84 @@ class _HomePageState extends State<HomePage2> {
                       AppLocalizations.of(context)!.translate('home_page_PHR'),
                       style: TextStyle(
                         fontSize: 15.0.sp,
-                        fontWeight: FontWeight.bold,
+
+                        color: Colors.pinkAccent,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 15, top: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    NiceButton(
+                      width: 50,
+                      radius: 40,
+                      mini: true,
+                      padding: const EdgeInsets.all(10),
+                      icon: Icons.calendar_today,
+                      gradientColors: [secondColor, firstColor],
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/appointementsCalendarPage');
+                      },
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.translate('home_page_Navig_Btn_1'),
+                      style: TextStyle(
+                        fontSize: 15.0.sp,
+
+                        color: Colors.pinkAccent,
+                      ),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    NiceButton(
+                      width: 50,
+                      radius: 40,
+                      mini: true,
+                      padding: const EdgeInsets.all(10),
+                      icon: Icons.timer,
+                      gradientColors: [secondColor, firstColor],
+                      onPressed: () {
+                        //Navigator.pushNamed(context, '/pHRPage');
+                      },
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.translate('home_page_Navig_Btn_2'),
+                      style: TextStyle(
+                        fontSize: 15.0.sp,
+
+                        color: Colors.pinkAccent,
+                      ),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    NiceButton(
+                      width: 50,
+                      radius: 40,
+                      mini: true,
+                      padding: const EdgeInsets.all(10),
+                      icon: Icons.monitor_weight,
+                      gradientColors: [secondColor, firstColor],
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/measurements');
+                      },
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.translate('home_page_Navig_Btn_3'),
+                      style: TextStyle(
+                        fontSize: 15.0.sp,
+
                         color: Colors.pinkAccent,
                       ),
                     )
@@ -297,7 +373,8 @@ class _HomePageState extends State<HomePage2> {
           //PregnancyProgress(),
         ],
       ),
-      bottomNavigationBar: HomeBottomBar(),
+
+      //bottomNavigationBar: HomeBottomBar(),
     );
   }
 }
