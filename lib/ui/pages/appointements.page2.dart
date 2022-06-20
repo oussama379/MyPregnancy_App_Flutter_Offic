@@ -11,13 +11,13 @@ import 'appointmenets/appointmentsRepo.dart';
 import 'appointmenets/buttonKeys.dart';
 import 'appointmenets/timeTextButton.dart';
 
-class AppointmentsCalendarPage extends StatefulWidget {
+class AppointmentsCalendarPage2 extends StatefulWidget {
   @override
-  State<AppointmentsCalendarPage> createState() =>
+  State<AppointmentsCalendarPage2> createState() =>
       _AppointmentsCalendarPageState();
 }
 
-class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
+class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage2> {
   CalendarFormat _calendarFormat = CalendarFormat.twoWeeks;
   DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
@@ -93,10 +93,6 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                     children: [
                       Container(
                         child: TableCalendar(
-                          headerStyle : HeaderStyle(
-                            formatButtonVisible: false,
-                            titleTextFormatter: (date, locale) => DateFormat.yMMMEd(locale).format(date),
-                          ),
                           calendarStyle: CalendarStyle(
                             todayDecoration: BoxDecoration(
                                 color: Colors.pink.shade200, shape: BoxShape.rectangle, ),
@@ -110,9 +106,7 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                           selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
                           onDaySelected: (selectedDay, focusedDay) {
                             setState(() {
-                              //print('_selectedDay before : '+_selectedDay.toString());
                               _selectedDay = selectedDay;
-                              //print('_selectedDay after : '+_selectedDay.toString());
                               _focusedDay = focusedDay;
                             });
                           },
@@ -124,9 +118,9 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                                     day.month == d.month &&
                                     day.year == d.year) {
                                   return InkWell(
-                                    splashColor: Colors.pinkAccent,
                                     onTap: (){
                                       setState(() {
+                                        //print(toHighlight);
                                         _selectedDay = day;
                                         _focusedDay = day;
                                         //print(checkDate(_selectedDay));
@@ -154,12 +148,19 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                           ),
                         ),
                       ),
-                      checkDate(_selectedDay) ? FutureBuilder(
+                    ],
+                  );
+                }
+              ),
+            ),
+                      checkDate(_selectedDay)
+                          ? FutureBuilder(
                           future : FirebaseDatabase.instance
                               .reference()
                               .child('Rdv').reference().once(),
                           builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
                             timeSlots.clear();
+                            print('Inside : FutureBuilder1');
                             if (!snapshot.hasData) {
                               return Container(
                                 child: Center(
@@ -270,7 +271,8 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                               ],
                             );
                           }
-                      ) : Center(
+                      )
+                          : Center(
                         child: Container(
                             height: 50,
                             margin:
@@ -290,12 +292,7 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                                 textAlign: TextAlign.center,
                               ),
                             )),
-                      )
-                    ],
-                  );
-                }
-              ),
-            ),
+                      ),
           ],
         ),
       ),
@@ -303,19 +300,16 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
   }
 
   bool checkDate(DateTime selectedDate) {
-    print('checkDate : ' + selectedDate.toString());
+    print('checkDate');
     for (DateTime d in toHighlight) {
       if (selectedDate.day == d.day &&
           selectedDate.month == d.month &&
           selectedDate.year == d.year) {
-        print('checkDate : true');
         return true;
       }
     }
-    print('checkDate : false');
     return false;
   }
-
 
 }
 
