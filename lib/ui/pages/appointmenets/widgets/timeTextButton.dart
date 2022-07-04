@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ma_grossesse/ui/pages/appointements.page.dart';
 
-import '../../../locator.dart';
-import '../../shared/toasts.dart';
-import 'appointmentsRepo.dart';
-import 'timeSlotModel.dart';
+import '../../../../locator.dart';
+import '../../../shared/toasts.dart';
+import '../appointmentsRepo.dart';
+import '../timeSlotModel.dart';
 
 class TimeTextButton extends StatefulWidget {
   String time;
@@ -25,6 +25,12 @@ class _TimeTextButtonState extends State<TimeTextButton> {
   DateTime selectedDate;
   final _appointmentsRepo = locator.get<AppointmentsRepo>();
   _TimeTextButtonState(this.time, this.isReserved, this.selectedDate);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +93,12 @@ class _TimeTextButtonState extends State<TimeTextButton> {
   }
 
   void _showAppConfirmDialog(DateTime dateTime, String timeSlot){
-    showDialog(context: this.context, builder: (context){
+
+    showDialog(context: this.context,
+        //TODO to be tested
+        barrierDismissible: false,
+        builder: (context){
+
       return AlertDialog(
         title: Text('Make an appointment'),
         content: Column(
@@ -111,15 +122,17 @@ class _TimeTextButtonState extends State<TimeTextButton> {
           TextButton(onPressed: (){
             setState(() {
               _appointmentsRepo.saveAppointment(dateTime, timeSlot);
+              _appointmentsRepo.saveAppointmentPerUser(dateTime, timeSlot);
               Navigator.pop(context);
               Navigator.pushReplacementNamed(
                 context,
                   "/appointementsCalendarPage"
               );
+              _toast.showMsg('You made an appointment at : '+dateTime.day.toString() +'/'+dateTime.month.toString() +'/'+dateTime.year.toString()+' : '+timeSlot);
               //Navigator.pushNamedAndRemoveUntil(context, "/appointementsCalendarPage", (_) => true);
             });
-
           }, child: Text('Yes')),
+
         ],
       );
     });
