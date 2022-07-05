@@ -7,6 +7,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:ma_grossesse/preferencesService.dart';
 import 'package:ma_grossesse/ui/pages/appointements.page.dart';
 import 'package:ma_grossesse/ui/pages/appointmenets/widgets/appointementHistoryPage.dart';
+import 'package:ma_grossesse/ui/pages/babyKicks.page.dart';
+import 'package:ma_grossesse/ui/pages/contractions.page.dart';
+import 'package:ma_grossesse/ui/pages/counters.page.dart';
 import 'package:ma_grossesse/ui/pages/createAccount.page.dart';
 import 'package:ma_grossesse/ui/pages/createPassword.page.dart';
 import 'package:ma_grossesse/ui/pages/disclaimer.page.dart';
@@ -86,6 +89,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp>{
 
+
   @override
   void initState() {
     super.initState();
@@ -116,6 +120,9 @@ class _MyAppState extends State<MyApp>{
         '/pressureMeasurements' : (context) => PressureMeasure(),
         '/appointementsCalendarPage' : (context) => AppointmentsCalendarPage(),
         '/AppointmentHistoryPage' : (context) => AppointmentHistoryPage(),
+        '/countersPage' : (context) => CountersPage(),
+        '/babyKicksPage' : (context) => BabyKicksPage(),
+        '/contractionsPage' : (context) => ContractionsPage(),
       },
       //TODO to be change to route
       initialRoute: route,

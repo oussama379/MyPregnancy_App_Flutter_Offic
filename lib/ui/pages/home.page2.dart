@@ -331,7 +331,7 @@ class _HomePageState extends State<HomePage2> {
                       icon: Icons.timer,
                       gradientColors: [secondColor, firstColor],
                       onPressed: () {
-                        //Navigator.pushNamed(context, '/pHRPage');
+                        Navigator.pushNamed(context, '/countersPage');
                       },
                     ),
                     Text(
