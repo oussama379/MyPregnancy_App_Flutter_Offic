@@ -29,10 +29,10 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
   final _appointmentsRepo = locator.get<AppointmentsRepo>();
   int counter = 2;
   List<AppointmentModel> appointmentsList = [];
+
   @override
   void initState() {
     super.initState();
-
     //_appointmentsRepo.getBookedSlots();
   }
 

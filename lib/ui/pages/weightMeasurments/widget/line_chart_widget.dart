@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import '../../../../app_localizations.dart';
 import '../weightModel.dart';
 import 'line_titles.dart';
 import '../../../../globals.dart' as globals;
@@ -65,7 +66,7 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                               BorderRadius.all(Radius.circular(10.0))),
                       child: new Center(
                         child: new Text(
-                          'There is no history',
+                          AppLocalizations.of(context)!.translate('weight_history_noHistory'),
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,

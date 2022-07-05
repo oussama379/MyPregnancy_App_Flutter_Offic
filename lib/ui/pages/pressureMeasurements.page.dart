@@ -8,69 +8,72 @@ import 'package:ma_grossesse/ui/pages/weightMeasurments/tabs/InputTab.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/tabs/chartTab.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
 
+import '../../app_localizations.dart';
+
 class PressureMeasure extends StatefulWidget {
   @override
   State<PressureMeasure> createState() => _PressureMeasureState();
 }
 
 class _PressureMeasureState extends State<PressureMeasure> {
-  Map<int, Widget> _children = {
-    0: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      SizedBox(
-        width: 7,
-      ),
-      Text(
-        'Input',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        width: 7,
-      ),
-      Icon(Icons.input),
-      SizedBox(
-        width: 7,
-      )
-    ]),
-    1: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      SizedBox(
-        width: 7,
-      ),
-      Text(
-        'History',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        width: 7,
-      ),
-      Icon(Icons.history),
-      SizedBox(
-        width: 7,
-      )
-    ]),
-    2: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      SizedBox(
-        width: 7,
-      ),
-      Text(
-        'Chart',
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-      SizedBox(
-        width: 7,
-      ),
-      Icon(Icons.area_chart),
-      SizedBox(
-        width: 7,
-      )
-    ]),
-  };
+
   var _currentSelection = 0;
 
   @override
   Widget build(BuildContext context) {
+    Map<int, Widget> _children = {
+      0: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        SizedBox(
+          width: 7,
+        ),
+        Text(
+          AppLocalizations.of(context)!.translate('weight_page_tab_1'),
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          width: 7,
+        ),
+        Icon(Icons.input),
+        SizedBox(
+          width: 7,
+        )
+      ]),
+      1: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        SizedBox(
+          width: 7,
+        ),
+        Text(
+          AppLocalizations.of(context)!.translate('weight_page_tab_2'),
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          width: 7,
+        ),
+        Icon(Icons.history),
+        SizedBox(
+          width: 7,
+        )
+      ]),
+      2: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        SizedBox(
+          width: 7,
+        ),
+        Text(
+          AppLocalizations.of(context)!.translate('weight_page_tab_3'),
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          width: 7,
+        ),
+        Icon(Icons.area_chart),
+        SizedBox(
+          width: 7,
+        )
+      ]),
+    };
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pressure Measurements'),
+        title: Text(AppLocalizations.of(context)!.translate('pressure_page_title')),
       ),
       body: ListView(children: [
         MaterialSegmentedControl(
@@ -108,7 +111,7 @@ class _PressureMeasureState extends State<PressureMeasure> {
                       width: 10,
                     ),
                     Text(
-                      'Systolic blood pressure',
+                      AppLocalizations.of(context)!.translate('pressure_page_Syst_field'),
                       style:
                           TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
                     )
@@ -129,7 +132,7 @@ class _PressureMeasureState extends State<PressureMeasure> {
                       width: 10,
                     ),
                     Text(
-                      'Diastolic blood pressure',
+                      AppLocalizations.of(context)!.translate('pressure_page_Diat_field'),
                       style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue),
                     )
                   ],

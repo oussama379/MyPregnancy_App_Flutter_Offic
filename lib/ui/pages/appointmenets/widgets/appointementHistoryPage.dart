@@ -4,6 +4,7 @@ import 'package:ma_grossesse/ui/pages/appointmenets/appointmentModel.dart';
 
 
 import '../../../../locator.dart';
+import '../../../../preferencesService.dart';
 import '../../../shared/toasts.dart';
 import '../appointmentsRepo.dart';
 
@@ -18,6 +19,7 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
   List<AppointmentModel> appointmentsList = [];
   List<String> appointmentsListKeys = [];
   final _toast = locator.get<toastMsg>();
+  final _preferencesService = locator.get<PreferencesService>();
 
 
 
@@ -166,6 +168,7 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
             setState(() {
               _appointmentRepo.deleteAppointmentPerUser(appointmentsListKeys[index]);
               _appointmentRepo.deleteAppointmentTimeSlot(appointmentsList[index].date, appointmentsList[index].timeSlot);
+              _preferencesService.deleteAppointmentDates(appointmentsList[index].date);
               Navigator.pop(context);
               _toast.showMsg('Appointment deleted ');
             });

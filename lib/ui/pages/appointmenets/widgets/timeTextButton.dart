@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ma_grossesse/ui/pages/appointements.page.dart';
 
 import '../../../../locator.dart';
+import '../../../../preferencesService.dart';
 import '../../../shared/toasts.dart';
 import '../appointmentsRepo.dart';
 import '../timeSlotModel.dart';
@@ -24,6 +25,7 @@ class _TimeTextButtonState extends State<TimeTextButton> {
   bool isReserved;
   DateTime selectedDate;
   final _appointmentsRepo = locator.get<AppointmentsRepo>();
+  final _preferencesService = locator.get<PreferencesService>();
   _TimeTextButtonState(this.time, this.isReserved, this.selectedDate);
 
   @override
@@ -119,20 +121,29 @@ class _TimeTextButtonState extends State<TimeTextButton> {
                 "/appointementsCalendarPage"
             );
           }, child: Text('Cancel')),
-          TextButton(onPressed: (){
+          TextButton(onPressed: () async {
+            bool savedOrNot = await _preferencesService.saveAppointmentDates(dateTime);
             setState(() {
-              _appointmentsRepo.saveAppointment(dateTime, timeSlot);
-              _appointmentsRepo.saveAppointmentPerUser(dateTime, timeSlot);
-              Navigator.pop(context);
-              Navigator.pushReplacementNamed(
-                context,
-                  "/appointementsCalendarPage"
-              );
-              _toast.showMsg('You made an appointment at : '+dateTime.day.toString() +'/'+dateTime.month.toString() +'/'+dateTime.year.toString()+' : '+timeSlot);
-              //Navigator.pushNamedAndRemoveUntil(context, "/appointementsCalendarPage", (_) => true);
+              if(savedOrNot == true){
+                _appointmentsRepo.saveAppointment(dateTime, timeSlot);
+                _appointmentsRepo.saveAppointmentPerUser(dateTime, timeSlot);
+                Navigator.pop(context);
+                Navigator.pushReplacementNamed(
+                    context,
+                    "/appointementsCalendarPage"
+                );
+                _toast.showMsg('You made an appointment at : '+dateTime.day.toString() +'/'+dateTime.month.toString() +'/'+dateTime.year.toString()+' : '+timeSlot);
+                //Navigator.pushNamedAndRemoveUntil(context, "/appointementsCalendarPage", (_) => true);
+              }else{
+                 Navigator.pop(context);
+                 Navigator.pushReplacementNamed(
+                     context,
+                     "/appointementsCalendarPage"
+                 );
+                _toast.showMsg('You can only make one appointment per day');
+              }
             });
           }, child: Text('Yes')),
-
         ],
       );
     });

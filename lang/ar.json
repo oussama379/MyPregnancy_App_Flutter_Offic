@@ -135,8 +135,55 @@
   "home_page_Navig_Btn_2": "العدادات" ,
   "home_page_LPD_alert_title": "تاريخ دورة الشهرية غير صالح",
   "home_page_LPD_alert_msg": "الرجاء إدخال تاريخ صالح" ,
-  "home_page_LPD_alert_conf": "حسنًا"
-  
+  "home_page_LPD_alert_conf": "حسنًا",
+
+
+  "weight_page_title": "قياسات الوزن",
+  "weight_page_tab_1": "الإدخال",
+  "weight_page_tab_2": "السجل",
+  "weight_page_tab_3": "مخطط" ,
+
+  "weight_input_tab_weightField_error1": "الرجاء إدخال وزنك" ,
+  "weight_input_tab_weightField_error2": "الرجاء إدخال وزن موجب" ,
+  "weight_input_tab_weightField_hint": "أدخل وزنك هنا" ,
+  "weight_input_tab_dateField_error1": "الرجاء إدخال تاريخ صالح" ,
+  "weight_input_tab_dateField_hint": "أدخل التاريخ" ,
+  "weight_input_tab_dateField_text +": "(اضغط للتغيير)",
+  "weight_input_tab_timeField_hint": "أدخل الوقت" ,
+  "weight_input_tab_savedNotOk": "الرجاء ملء جميع الحقول" ,
+  "weight_input_tab_saved_ok": "تم الحفظ بنجاح: الاطلاع على السجل",
+  "weight_input_tab_confirm_button": "حفظ الكل" ,
+
+  "weight_history_noHistory": "لا يوجد تاريخ" ,
+  "weight_history_date_field": "التاريخ:" ,
+  "weight_history_time_field": "الوقت:" ,
+  "weight_history_weight_field": "الوزن:" ,
+
+  "weight_history_dialog_title": "حذف السجل",
+  "weight_history_dialog_text": "هل أنت متأكد أنك تريد حذف هذه البيانات",
+  "weight_history_dialog_cancel": "إلغاء" ,
+  "weight_history_dialog_confirm": "نعم" ,
+
+  "measurement_page_title": "القياسات",
+  "measurement_page_btn1": "الوزن" ,
+  "measurement_page_btn2": "الضغط" ,
+
+  "pressure_page_title": "قياسات الضغط",
+  "pressure_page_Syst_field": "ضغط الدم الانقباضي",
+  "pressure_page_Diat_field": "ضغط الدم الانبساطي",
+
+  "pressure_input_tab_systField_error1": "الرجاء إدخال الضغط الانقباضي" ,
+  "pressure_input_tab_systField_error2": "الرجاء إدخال قيمة موجبة",
+  "pressure_input_tab_systField_label": "أدخل الضغط الانقباضي",
+  "pressure_input_tab_systField_hint": "الضغط الانقباضي",
+
+  "pressure_input_tab_diatField_error1": "الرجاء إدخال الضغط الانبساطي" ,
+  "pressure_input_tab_diatField_label": "أدخل الضغط الانبساطي",
+  "pressure_input_tab_diatField_hint": "الضغط الانبساطي",
+  "pressure_input_tab_error": "الرجاء إدخال الضغوط الخاصة بك" ,
+
+  "weight_history_Syst_field": "الضغط الانقباضي:",
+  "weight_history_Dias_field": "الضغط الانبساطي:"
 
 }
 

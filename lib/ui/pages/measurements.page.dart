@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../app_localizations.dart';
 import 'home/widgets/roundButton.home.dart';
 
 class MeasurementsPage extends StatelessWidget {
@@ -8,7 +9,7 @@ class MeasurementsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: Text('Measurements'),
+        title: Text(AppLocalizations.of(context)!.translate('measurement_page_title')),
     ),
     body: Center(
       child: GridView.count(
@@ -20,7 +21,7 @@ class MeasurementsPage extends StatelessWidget {
         crossAxisCount: 1,
         children: <Widget>[
           RoundButton(
-              buttonText: 'Weight',
+              buttonText: AppLocalizations.of(context)!.translate('measurement_page_btn1'),
               icon: Icon(
                 Icons.monitor_weight,
                 color: Colors.white,
@@ -31,7 +32,7 @@ class MeasurementsPage extends StatelessWidget {
                 Navigator.pushNamed(context, '/weightMeasurements');
               }),
           RoundButton(
-              buttonText: 'Pressure',
+              buttonText: AppLocalizations.of(context)!.translate('measurement_page_btn2'),
               icon: Icon(
                 Icons.monitor_heart,
                 color: Colors.white,

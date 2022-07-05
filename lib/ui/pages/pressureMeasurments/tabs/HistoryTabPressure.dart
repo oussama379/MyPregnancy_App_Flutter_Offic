@@ -8,6 +8,7 @@ import 'package:ma_grossesse/ui/pages/weightMeasurments/historyModel.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightModel.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightRepo.dart';
 
+import '../../../../app_localizations.dart';
 import '../../../../locator.dart';
 import '../../../shared/toasts.dart';
 
@@ -44,7 +45,7 @@ class _HistoryPageStatePressure extends State<HistoryPagePressure> {
                           color: Colors.pinkAccent,
                           borderRadius: BorderRadius.all(Radius.circular(10.0))),
                       child: new Center(
-                        child: new Text('There is no history',
+                        child: new Text(AppLocalizations.of(context)!.translate('weight_history_noHistory'),
                           style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,),
                       )),
@@ -86,7 +87,7 @@ class _HistoryPageStatePressure extends State<HistoryPagePressure> {
                               ),
                               Icon(Icons.date_range),
                               Text(
-                                ' Date : ',
+                                AppLocalizations.of(context)!.translate('weight_history_date_field'),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -103,7 +104,7 @@ class _HistoryPageStatePressure extends State<HistoryPagePressure> {
                               ),
                               Icon(Icons.watch_later_outlined),
                               Text(
-                                ' Time : ',
+                                AppLocalizations.of(context)!.translate('weight_history_time_field'),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -120,7 +121,7 @@ class _HistoryPageStatePressure extends State<HistoryPagePressure> {
                               ),
                               Icon(Icons.monitor_heart),
                               Text(
-                                ' Systolic Pressure : ',
+                                AppLocalizations.of(context)!.translate('weight_history_Syst_field'),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -140,7 +141,7 @@ class _HistoryPageStatePressure extends State<HistoryPagePressure> {
                           ),
                           Icon(Icons.monitor_heart),
                           Text(
-                            ' Diastolic Pressure : ',
+                            AppLocalizations.of(context)!.translate('weight_history_Dias_field'),
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Text(
@@ -189,19 +190,19 @@ class _HistoryPageStatePressure extends State<HistoryPagePressure> {
   void _showDeleteDialog(var index){
     showDialog(context: this.context, builder: (context){
       return AlertDialog(
-        title: Text('Delete History'),
-        content: Text('Are you sure you want to delete this data'),
+        title: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_title')),
+        content: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_text')),
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text('Cancel')),
+          }, child: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_cancel'))),
           TextButton(onPressed: (){
             setState(() {
               _pressureRepo.deletePressureMeasurement(pressuresListKeys[index]);
               Navigator.pop(context);
             });
 
-          }, child: Text('Yes')),
+          }, child: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_confirm'))),
         ],
       );
     });

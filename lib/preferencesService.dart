@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:ffi';
 
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesService {
@@ -26,6 +28,47 @@ class PreferencesService {
     final preferences = await SharedPreferences.getInstance();
     await preferences.setBool('wantPassword', wantPasswordVar);
   }
+
+  Future<bool> saveAppointmentDates(DateTime dateTime) async {
+    DateFormat dateFormat = DateFormat("dd-MM-yyyy");
+    String date = dateFormat.format(dateTime);
+    List<dynamic> list = [];
+    final preferences = await SharedPreferences.getInstance();
+    final appointmentDates = preferences.getString('appointmentDates');
+    if(appointmentDates != null) list  = json.decode(appointmentDates);
+    for (var d in list) {
+      if(d == date) {print('False'); return false;}
+    }
+    list.add(date);
+    var s = json.encode(list);
+    await preferences.setString('appointmentDates', s);
+    print('True');
+    print('Saved AppointmentDates'+s);
+    return true;
+  }
+
+  Future<bool> deleteAppointmentDates(String date) async {
+    List<dynamic> list = [];
+    final preferences = await SharedPreferences.getInstance();
+    final appointmentDates = preferences.getString('appointmentDates');
+    if(appointmentDates != null) list  = json.decode(appointmentDates);
+    list.removeWhere((d) => d == date);
+    var s = json.encode(list);
+    await preferences.setString('appointmentDates', s);
+    print('True');
+    print('deleted AppointmentDate'+s);
+    return true;
+  }
+
+
+  Future<List<String>?> getAppointmentsDates() async {
+    final preferences = await SharedPreferences.getInstance();
+    final appointmentDates = preferences.getString('appointmentDates');
+    List<String> list  = json.decode(appointmentDates!);
+    return list;
+  }
+
+
 
   Future<bool?> getWantPassword() async {
     final preferences = await SharedPreferences.getInstance();

@@ -148,6 +148,52 @@
   "home_page_Navig_Btn_3": "Measurements",
   "home_page_LPD_alert_title": "Invalid Period Date",
   "home_page_LPD_alert_msg": "Please enter a valid last period date",
-  "home_page_LPD_alert_conf": "Ok"
-}
+  "home_page_LPD_alert_conf": "Ok",
 
+  "weight_page_title": "Weight Measurements",
+  "weight_page_tab_1": "Input",
+  "weight_page_tab_2": "History",
+  "weight_page_tab_3": "Chart",
+
+  "weight_input_tab_weightField_error1": "Please enter your weight",
+  "weight_input_tab_weightField_error2": "Please enter a positive weight",
+  "weight_input_tab_weightField_hint": "Enter your weight here",
+  "weight_input_tab_dateField_error1": "Please enter a valid date",
+  "weight_input_tab_dateField_hint": "Enter the date",
+  "weight_input_tab_dateField_text+": " (Tap to change)",
+  "weight_input_tab_timeField_hint": "Enter the time",
+  "weight_input_tab_savedNotOk": "Please fill in all the fields",
+  "weight_input_tab_saved_ok": "Saved Successfully : See History",
+  "weight_input_tab_confirm_button": "Save All",
+
+  "weight_history_noHistory": "There is no history",
+  "weight_history_date_field": " Date : ",
+  "weight_history_time_field": " Time : ",
+  "weight_history_weight_field": " Weight : ",
+
+  "weight_history_dialog_title": "Delete History",
+  "weight_history_dialog_text": "Are you sure you want to delete this data",
+  "weight_history_dialog_cancel": "Cancel",
+  "weight_history_dialog_confirm": "Yes",
+
+  "measurement_page_title": "Measurements",
+  "measurement_page_btn1": "Weight",
+  "measurement_page_btn2": "Pressure",
+
+  "pressure_page_title": "Pressure Measurements",
+  "pressure_page_Syst_field": "Systolic blood pressure",
+  "pressure_page_Diat_field": "Diastolic blood pressure",
+
+  "pressure_input_tab_systField_error1": "Please enter your Systolic pressure",
+  "pressure_input_tab_systField_error2": "Please enter a positive value",
+  "pressure_input_tab_systField_label": "Enter your Systolic pressure",
+  "pressure_input_tab_systField_hint": "Systolic pressure",
+
+  "pressure_input_tab_diatField_error1": "Please enter your Diastolic pressure",
+  "pressure_input_tab_diatField_label": "Enter your Diastolic pressure",
+  "pressure_input_tab_diatField_hint": "Diastolic pressure",
+  "pressure_input_tab_error": "Please enter your pressures",
+
+  "weight_history_Syst_field": " Systolic Pressure : ",
+  "weight_history_Dias_field": " Diastolic Pressure : "
+}

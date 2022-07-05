@@ -142,7 +142,58 @@
   "home_page_Navig_Btn_3": "Mesures",
   "home_page_LPD_alert_title": "Date de période invalide",
   "home_page_LPD_alert_msg": "Veuillez entrer une date de dernière période valide",
-  "home_page_LPD_alert_conf": "D'accord"
+  "home_page_LPD_alert_conf": "D'accord",
+
+
+
+  "weight_page_title": "Mesures de poids",
+  "weight_page_tab_1": "Entrée",
+  "weight_page_tab_2": "Historique",
+  "weight_page_tab_3": "Graphique",
+
+  "weight_input_tab_weightField_error1": "Veuillez entrer votre poids",
+  "weight_input_tab_weightField_error2": "Veuillez entrer un poids positif",
+  "weight_input_tab_weightField_hint": "Entrez votre poids ici",
+  "weight_input_tab_dateField_error1": "Veuillez saisir une date valide",
+  "weight_input_tab_dateField_hint": "Entrez la date",
+  "weight_input_tab_dateField_text+": " (Appuyez pour changer)",
+  "weight_input_tab_timeField_hint": "Entrez l'heure",
+  "weight_input_tab_savedNotOk": "Veuillez remplir tous les champs",
+  "weight_input_tab_saved_ok": "Enregistré avec succès: voir l'historique",
+  "weight_input_tab_confirm_button": "Tout enregistrer",
+
+  "weight_history_noHistory": "Il n'y a pas d'historique",
+  "weight_history_date_field": " Date : ",
+  "weight_history_time_field": " Heure : ",
+  "weight_history_weight_field": " Poids : ",
+
+  "weight_history_dialog_title": "Supprimer l'historique",
+  "weight_history_dialog_text": "Êtes-vous sûr de vouloir supprimer ces données",
+  "weight_history_dialog_cancel": "Annuler",
+  "weight_history_dialog_confirm": "Oui",
+
+  "measurement_page_title": "Mesures",
+  "measurement_page_btn1": "Poids",
+  "measurement_page_btn2": "Pression",
+
+  "pressure_page_title": "Mesures de pression",
+  "pressure_page_Syst_field": "Tension artérielle systolique",
+  "pressure_page_Diat_field": "Tension artérielle diastolique",
+
+  "pressure_input_tab_systField_error1": "Veuillez saisir votre pression systolique",
+  "pressure_input_tab_systField_error2": "Veuillez entrer une valeur positive",
+  "pressure_input_tab_systField_label": "Entrez votre pression systolique",
+  "pressure_input_tab_systField_hint": "Pression systolique",
+
+  "pressure_input_tab_diatField_error1": "Veuillez saisir votre pression diastolique",
+  "pressure_input_tab_diatField_label": "Entrez votre pression diastolique",
+  "pressure_input_tab_diatField_hint": "Pression diastolique",
+  "pressure_input_tab_error": "Veuillez saisir vos pressions",
+
+  "weight_history_Syst_field": " Pression Systolique : ",
+  "weight_history_Dias_field": " Pression diastolique : "
+
+
 }
 
 

@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightModel.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightRepo.dart';
 
+import '../../../../app_localizations.dart';
 import '../../../../locator.dart';
 import '../../../shared/toasts.dart';
 
@@ -35,10 +36,10 @@ class _InputPageState extends State<InputPage> {
                       controller: _weight,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your weight';
+                          return AppLocalizations.of(context)!.translate('weight_input_tab_weightField_error1');
                         }
                         if (double.parse(value) <= 0) {
-                          return 'Please enter a positive weight';
+                          return AppLocalizations.of(context)!.translate('weight_input_tab_weightField_error2');
                         }
                         return null;
                       },
@@ -48,8 +49,8 @@ class _InputPageState extends State<InputPage> {
                           color: Colors.black,
                         ),
                         border: OutlineInputBorder(),
-                        labelText: 'Enter your weight here',
-                        hintText: 'Enter your weight here',
+                        labelText: AppLocalizations.of(context)!.translate('weight_input_tab_weightField_hint'),
+                        hintText: AppLocalizations.of(context)!.translate('weight_input_tab_weightField_hint'),
                       ))),
               SizedBox(
                 height: 20,
@@ -75,16 +76,16 @@ class _InputPageState extends State<InputPage> {
                             if(date.isBefore(DateTime.now()))
                               _date = date;
                             else{
-                              _toast.showMsg('Please enter a valid date ');
+                              _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_dateField_error1'));
                             }
                           });
                           print('confirm $date');
                         }, currentTime: DateTime.now(), locale: LocaleType.en);
                   },
                   label: _date == null
-                      ? Text('Enter the date')
+                      ? Text(AppLocalizations.of(context)!.translate('weight_input_tab_dateField_hint'))
                       : Text(
-                    DateFormat('yyyy-MM-dd').format(_date!).toString()+' (Tap to change)',
+                    DateFormat('yyyy-MM-dd').format(_date!).toString() + AppLocalizations.of(context)!.translate('weight_input_tab_dateField_text+'),
                     style: TextStyle(color: Colors.pink),
                   ),
                   icon: const Icon(Icons.date_range),
@@ -115,9 +116,9 @@ class _InputPageState extends State<InputPage> {
                         }, currentTime: DateTime.now(), locale: LocaleType.en);
                   },
                   label: _time == null
-                      ? Text('Enter the time')
+                      ? Text(AppLocalizations.of(context)!.translate('weight_input_tab_timeField_hint'))
                       : Text(
-                    DateFormat.jm().format(_time!).toString() + ' (Tap to change)',
+                    DateFormat.jm().format(_time!).toString() + AppLocalizations.of(context)!.translate('weight_input_tab_dateField_text'),
                     style: TextStyle(color: Colors.pink),
                   ),
                   icon: const Icon(Icons.watch_later_outlined),
@@ -136,28 +137,28 @@ class _InputPageState extends State<InputPage> {
                 child: TextButton(
                   onPressed: () {
                     if(_date == null || _time == null)
-                      _toast.showMsg('Please fill in all the fields');
+                      _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_savedNotOk'));
                     else {
                       if (_formKey.currentState!.validate()) {
                         print("Successful");
                         WeightModel W = _weightRepo.prepareWeightModel(
                             int.parse(_weight.text), _date!, _time!);
-                        print(W.toString());
-                        print(W.toJson());
+                        //print(W.toString());
+                        //print(W.toJson());
                         _weightRepo.SaveWeightMeasurements(W.toJson());
-                        _toast.showMsg('Saved Successfully : See History');
+                        _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_saved_ok'));
                         setState(() {
                           _date = null;
                           _time = null;
                           _weight.clear();
                         });
                       } else {
-                        _toast.showMsg('Please enter your weight');
+                        _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_weightField_error1'));
                       }
                     }
                   },
                   child: Text(
-                    'Save All',
+                    AppLocalizations.of(context)!.translate('weight_input_tab_confirm_button'),
                     style: TextStyle(color: Colors.white, fontSize: 17),
                   ),
                 ),

@@ -6,6 +6,7 @@ import 'package:ma_grossesse/ui/pages/weightMeasurments/historyModel.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightModel.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurments/weightRepo.dart';
 
+import '../../../../app_localizations.dart';
 import '../../../../locator.dart';
 import '../../../shared/toasts.dart';
 
@@ -43,7 +44,7 @@ class _HistoryPageState extends State<HistoryPage> {
                           color: Colors.pinkAccent,
                           borderRadius: BorderRadius.all(Radius.circular(10.0))),
                       child: new Center(
-                        child: new Text('There is no history',
+                        child: new Text(AppLocalizations.of(context)!.translate('weight_history_noHistory'),
                           style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,),
                       )),
@@ -84,7 +85,7 @@ class _HistoryPageState extends State<HistoryPage> {
                               ),
                               Icon(Icons.date_range),
                               Text(
-                                ' Date : ',
+                                AppLocalizations.of(context)!.translate('weight_history_date_field'),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -101,7 +102,7 @@ class _HistoryPageState extends State<HistoryPage> {
                               ),
                               Icon(Icons.watch_later_outlined),
                               Text(
-                                ' Time : ',
+                                AppLocalizations.of(context)!.translate('weight_history_time_field'),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -118,7 +119,7 @@ class _HistoryPageState extends State<HistoryPage> {
                               ),
                               Icon(Icons.monitor_weight_outlined),
                               Text(
-                                ' Weight : ',
+                                AppLocalizations.of(context)!.translate('weight_history_weight_field'),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -166,19 +167,19 @@ class _HistoryPageState extends State<HistoryPage> {
   void _showDeleteDialog(var index){
     showDialog(context: this.context, builder: (context){
       return AlertDialog(
-        title: Text('Delete History'),
-        content: Text('Are you sure you want to delete this data'),
+        title: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_title')),
+        content: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_text')),
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text('Cancel')),
+          }, child: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_cancel'))),
           TextButton(onPressed: (){
             setState(() {
               _weightRepo.deleteWeightMeasurement(weightsListKeys[index]);
               Navigator.pop(context);
             });
 
-          }, child: Text('Yes')),
+          }, child: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_confirm'))),
         ],
       );
     });

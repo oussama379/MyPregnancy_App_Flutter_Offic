@@ -38,10 +38,10 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                       controller: _pressureSystolic,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your Systolic pressure';
+                          return AppLocalizations.of(context)!.translate('pressure_input_tab_systField_error1');
                         }
                         if (int.parse(value) <= 0) {
-                          return 'Please enter a positive value';
+                          return AppLocalizations.of(context)!.translate('pressure_input_tab_systField_error2');
                         }
                         if(int.tryParse(value) == null){
                           return AppLocalizations.of(context)!.translate('createAccount_page_phone_field_noValid');
@@ -55,8 +55,8 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                           color: Colors.black,
                         ),
                         border: OutlineInputBorder(),
-                        labelText: 'Enter your Systolic pressure',
-                        hintText: 'Systolic pressure',
+                        labelText: AppLocalizations.of(context)!.translate('pressure_input_tab_systField_label'),
+                        hintText: AppLocalizations.of(context)!.translate('pressure_input_tab_systField_hint'),
                       ))),
               Padding(
                   padding:
@@ -66,10 +66,10 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                       controller: _pressureDiastolic,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your Diastolic pressure';
+                          return AppLocalizations.of(context)!.translate('pressure_input_tab_diatField_error1');
                         }
                         if (double.parse(value) <= 0) {
-                          return 'Please enter a positive value';
+                          return AppLocalizations.of(context)!.translate('pressure_input_tab_systField_error2');
                         }
                         if(int.tryParse(value) == null){
                           //numeric value
@@ -83,8 +83,8 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                           color: Colors.black,
                         ),
                         border: OutlineInputBorder(),
-                        labelText: 'Enter your Diastolic pressure',
-                        hintText: 'Diastolic pressure',
+                        labelText: AppLocalizations.of(context)!.translate('pressure_input_tab_diatField_label'),
+                        hintText: AppLocalizations.of(context)!.translate('pressure_input_tab_diatField_hint'),
                       ))),
               SizedBox(
                 height: 20,
@@ -110,16 +110,16 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                             if(date.isBefore(DateTime.now()))
                               _date = date;
                             else{
-                              _toast.showMsg('Please enter a valid date ');
+                              _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_dateField_error1'));
                             }
                           });
                           print('confirm $date');
                         }, currentTime: DateTime.now(), locale: LocaleType.en);
                   },
                   label: _date == null
-                      ? Text('Enter the date')
+                      ? Text(AppLocalizations.of(context)!.translate('weight_input_tab_dateField_hint'))
                       : Text(
-                    DateFormat('yyyy-MM-dd').format(_date!).toString()+' (Tap to change)',
+                    DateFormat('yyyy-MM-dd').format(_date!).toString()+AppLocalizations.of(context)!.translate('weight_input_tab_dateField_text'),
                     style: TextStyle(color: Colors.pink),
                   ),
                   icon: const Icon(Icons.date_range),
@@ -150,9 +150,9 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                         }, currentTime: DateTime.now(), locale: LocaleType.en);
                   },
                   label: _time == null
-                      ? Text('Enter the time')
+                      ? Text(AppLocalizations.of(context)!.translate('weight_input_tab_timeField_hint'))
                       : Text(
-                    DateFormat.jm().format(_time!).toString() + ' (Tap to change)',
+                    DateFormat.jm().format(_time!).toString() +AppLocalizations.of(context)!.translate('weight_input_tab_dateField_text'),
                     style: TextStyle(color: Colors.pink),
                   ),
                   icon: const Icon(Icons.watch_later_outlined),
@@ -171,7 +171,7 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                 child: TextButton(
                   onPressed: () {
                     if(_date == null || _time == null)
-                      _toast.showMsg('Please fill in all the fields');
+                      _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_savedNotOk'));
                     else {
                       if (_formKey.currentState!.validate()) {
                         print("Successful");
@@ -179,7 +179,7 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                         print(P.toString());
                         print(P.toJson());
                         _pressureRepo.SavePressureMeasurements(P.toJson());
-                        _toast.showMsg('Saved Successfully : See History');
+                        _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_saved_ok'));
                         setState(() {
                           _date = null;
                           _time = null;
@@ -187,12 +187,12 @@ class _InputPageStatePressure extends State<InputPagePressure> {
                           _pressureDiastolic.clear();
                         });
                       } else {
-                        _toast.showMsg('Please enter your pressures');
+                        _toast.showMsg(AppLocalizations.of(context)!.translate('pressure_input_tab_error'));
                       }
                     }
                   },
                   child: Text(
-                    'Save All',
+                    AppLocalizations.of(context)!.translate('weight_input_tab_confirm_button'),
                     style: TextStyle(color: Colors.white, fontSize: 17),
                   ),
                 ),

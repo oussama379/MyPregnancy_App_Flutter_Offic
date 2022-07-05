@@ -174,7 +174,7 @@ class _TimeSlotsSectionState extends State<TimeSlotsSection> {
               ],
             ),
           ),
-          ButtonKeys(),
+          Center(child: ButtonKeys()),
           SizedBox(
             height: 10,
           ),
