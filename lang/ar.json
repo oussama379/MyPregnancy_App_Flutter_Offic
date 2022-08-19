@@ -126,7 +126,7 @@
   "home_page_ImagesMsg": "هنا سترين صور نمو الجنين أسبوعًا بعد أسبوع" ,
   "home_page_LastPeriodButton": "أدخلي تاريخ آخر دورة شهرية" ,
   "home_page_ChangeLastPeriodButton": "تغيير تاريخ دورة الشهرية",
-  "home_page_PHR": "السجل الطبي",
+  "home_page_PHR": "سجل طبي",
   "home_page_INFO": "المعلومات",
   "home_page_Navig_Btn_0": "الرئيسية" ,
   "home_page_Navig_Btn_1": "المواعيد",
@@ -183,7 +183,67 @@
   "pressure_input_tab_error": "الرجاء إدخال الضغوط الخاصة بك" ,
 
   "weight_history_Syst_field": "الضغط الانقباضي:",
-  "weight_history_Dias_field": "الضغط الانبساطي:"
+  "weight_history_Dias_field": "الضغط الانبساطي:",
+
+  "appointment_page_title":" المواعيد ",
+  "appointment_page_greenBox":" الأيام ذات المواعيد المتاحة ",
+  "appointment_page_noDates_msgs":" لا توجد مواعيد متاحة في هذا التاريخ ",
+  "appointment_page_history":" سجل المواعيد ",
+  "appointment_page_history_noAppo":" ليس لديك مواعيد ",
+  "appointment_page_history_dateField":" التاريخ: ",
+  "appointment_page_history_timeField":" الفترة الزمنية: ",
+  "appointment_page_history_dialog_text":" هل أنت متأكد أنك تريد حذف هذا الموعد ",
+  "appointment_page_history_dialog_confirm":" تم حذف الموعد ",
+  "appointment_page_key1":" محجوز ",
+  "appointment_page_key2":" متاح ",
+  "appointment_page_morn":" صباح ",
+  "appointment_page_eve":" مساءً ",
+  "appointment_page_redButton_msg":" الفترة الزمنية التي حددتها محجوزة ",
+  "appointment_page_dialog_title":" تحديد موعد ",
+  "appointment_page_dialog_msg":" هل أنت متأكد أنك تريد تحديد هذا الموعد: ",
+  "appointment_page_dialog_conf":" لقد حددت موعدًا في ",
+  "appointment_page_dialog_error":" يمكنك تحديد موعد واحد فقط في اليوم ",
+
+
+  "counters_page_title": "العدادات",
+  "counters_page_btn1": "تقلصات",
+  "counters_page_btn2": "ركلات الطفل",
+
+  "contractions_page_title": "عداد التقلصات" ,
+  "contractions_page_txtCounter": "تقلصات",
+  "contractions_page_btn2": "بداية",
+  "contractions_page_btn1": "إيقاف" ,
+  "contractions_page_btn3": "تقلص" ,
+  "contractions_page_list_field1": "التاريخ والوقت",
+  "contractions_page_list_field2": "الكمية" ,
+  "contractions_page_list_field3": "المدة",
+  "contractions_page_toastMsg": "تم الحفظ بنجاح",
+  "contractions_page_dialog_conf": "تم الحذف بنجاح",
+
+  "babyKicks_page_title": "عداد ركلات الطفل",
+  "babyKicks_page_txtCounter": "الركلات" ,
+  "babyKicks_page_btn3": "ركلة",
+
+  "settings_page_popUp_dialogError": "الرجاء إدخال كلمة المرور القديمة" ,
+  "settings_page_popUp_dialog_ErrorPwd": "كلمة مرور غير صحيحة" ,
+  "password_creation_page_title2": "تغيير كلمة المرور" ,
+  "internet_errors1": "حدث خطأ ما أعد المحاولة لاحقًا" ,
+  "internet_errors2": "تأكد من اتصالك بالإنترنت" ,
+  "internet_errors3": "تحتاج إلى اتصال بالإنترنت لمشاهدة الصورة" ,
+  "internet_errors4": "تحتاج إلى اتصال بالإنترنت لحفظ وعرض ركلات طفلك" ,
+  "internet_errors5": "تحتاج إلى اتصال بالإنترنت لحفظ الانقباضات وعرضها",
+
+  "pressure_HighAlertdialog_title": "انتباه",
+  "pressure_HighAlertdialog_Sys": "انتبه! ضغطك الانقباضي فوق 130 , يرجى استشارة طبيبك في أقرب وقت ممكن!",
+  "pressure_HighAlertdialog_Dia": "انتبه! ضغطك الانبساطي فوق 80 , يرجى استشارة طبيبك في أقرب وقت ممكن!",
+  "contraction_HighAlertdialog": "لديك أكثر من انقباضين في أقل من 10 دقائق , يجب عليك الاتصال بطبيبك على وجه السرعة!",
+
+
+  "language_en": "الإنجليزية",
+  "language_fr": "الفرنسية",
+  "language_ar": "العربية"
+
+  
 
 }
 

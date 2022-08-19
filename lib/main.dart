@@ -28,6 +28,7 @@ import 'package:ma_grossesse/ui/pages/recoverPassword.page.dart';
 import 'package:ma_grossesse/ui/pages/settings.page.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurements.page.dart';
 import 'package:ma_grossesse/ui/sharedServices/checkInternetConnection.dart';
+import 'package:provider/provider.dart';
 import './theme/custom_theme.dart';
 import 'package:flutter/services.dart';
 
@@ -35,6 +36,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'app_localizations.dart';
+import 'localeProvider.dart';
 import 'locator.dart';
 import 'globals.dart' as globals;
 
@@ -47,7 +49,6 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   // Disable Landscape Mode
-  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
@@ -85,9 +86,11 @@ void main() async{
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
+
 }
 
 class _MyAppState extends State<MyApp>{
+
 
 
   @override
@@ -97,61 +100,124 @@ class _MyAppState extends State<MyApp>{
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'My Pregnancy',
-      theme: CustomTheme.lightTheme,
-      routes: {
-        '/homePage': (context) => HomePage2(),
-        '/createPasswordPage' : (context) => CreatePasswordPage(),
-        '/passwordAuthPage' : (context) => PasswordAthenPage(),
-        '/loginPage' : (context) => LoginPage(),
-        '/createAccountPage' : (context) => CreateAccountPage(),
-        '/recoverPasswordPage' : (context) => RecoverPasswordPage(),
-        '/settingsPage' : (context) => SettingsPage(),
-        '/disclaimerPage' : (context) => DisclaimerPage(),
-        '/privacyPolicyPage' : (context) => PrivacyPolicyPage(),
-        '/infoPagePage' : (context) => InfoPage(),
-        '/infoPagePage2' : (context) => InfoPage2(),
-        '/pHRPage' : (context) => PHRPage(),
-        '/lastPeriod' : (context) => LastPeriod(),
-        '/measurements' : (context) => MeasurementsPage(),
-        '/weightMeasurements' : (context) => WeightMeasure(),
-        '/pressureMeasurements' : (context) => PressureMeasure(),
-        '/appointementsCalendarPage' : (context) => AppointmentsCalendarPage(),
-        '/AppointmentHistoryPage' : (context) => AppointmentHistoryPage(),
-        '/countersPage' : (context) => CountersPage(),
-        '/babyKicksPage' : (context) => BabyKicksPage(),
-        '/contractionsPage' : (context) => ContractionsPage(),
-      },
-      //TODO to be change to route
-      initialRoute: route,
-      // List all of the app's supported locales here
-      supportedLocales: [
-        Locale('en', ''),
-        Locale('ar', ''),
-        Locale('fr', ''),
-      ],
-      // These delegates make sure that the localization data for the proper language is loaded
-      localizationsDelegates: [
-        // A class which loads the translations from JSON files
-        AppLocalizations.delegate,
-        // Built-in localization of basic text for Material widgets
-        GlobalMaterialLocalizations.delegate,
-        // Built-in localization for text direction LTR/RTL
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      // Returns a locale which will be used by the app
-      localeResolutionCallback: (locale, supportedLocales) {
-        // Check if the current device locale is supported
-        for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale!.languageCode) {
-            return supportedLocale;
-          }
-        }
-        // If the locale of the device is not supported, use the first one
-        // from the list (English, in this case).
-        return supportedLocales.first;
+    // return  MaterialApp(
+    //     debugShowCheckedModeBanner: false,
+    //     title: 'My Pregnancy',
+    //     theme: CustomTheme.lightTheme,
+    //     routes: {
+    //       '/homePage': (context) => HomePage2(),
+    //       '/createPasswordPage' : (context) => CreatePasswordPage(),
+    //       '/passwordAuthPage' : (context) => PasswordAthenPage(),
+    //       '/loginPage' : (context) => LoginPage(),
+    //       '/createAccountPage' : (context) => CreateAccountPage(),
+    //       '/recoverPasswordPage' : (context) => RecoverPasswordPage(),
+    //       '/settingsPage' : (context) => SettingsPage(),
+    //       '/disclaimerPage' : (context) => DisclaimerPage(),
+    //       '/privacyPolicyPage' : (context) => PrivacyPolicyPage(),
+    //       '/infoPagePage' : (context) => InfoPage(),
+    //       '/infoPagePage2' : (context) => InfoPage2(),
+    //       '/pHRPage' : (context) => PHRPage(),
+    //       '/lastPeriod' : (context) => LastPeriod(),
+    //       '/measurements' : (context) => MeasurementsPage(),
+    //       '/weightMeasurements' : (context) => WeightMeasure(),
+    //       '/pressureMeasurements' : (context) => PressureMeasure(),
+    //       '/appointementsCalendarPage' : (context) => AppointmentsCalendarPage(),
+    //       '/AppointmentHistoryPage' : (context) => AppointmentHistoryPage(),
+    //       '/countersPage' : (context) => CountersPage(),
+    //       '/babyKicksPage' : (context) => BabyKicksPage(),
+    //       '/contractionsPage' : (context) => ContractionsPage(),
+    //     },
+    //     initialRoute: route,
+    //     // List all of the app's supported locales here
+    //     supportedLocales: [
+    //       Locale('en', ''),
+    //       Locale('ar', ''),
+    //       Locale('fr', ''),
+    //     ],
+    //     // These delegates make sure that the localization data for the proper language is loaded
+    //     localizationsDelegates: [
+    //       // A class which loads the translations from JSON files
+    //       AppLocalizations.delegate,
+    //       // Built-in localization of basic text for Material widgets
+    //       GlobalMaterialLocalizations.delegate,
+    //       // Built-in localization for text direction LTR/RTL
+    //       GlobalWidgetsLocalizations.delegate,
+    //     ],
+    //     // Returns a locale which will be used by the app
+    //     localeResolutionCallback: (locale, supportedLocales) {
+    //       // Check if the current device locale is supported
+    //       for (var supportedLocale in supportedLocales) {
+    //         if (supportedLocale.languageCode == locale!.languageCode) {
+    //           return supportedLocale;
+    //         }
+    //       }
+    //       // If the locale of the device is not supported, use the first one
+    //       // from the list (English, in this case).
+    //       return supportedLocales.first;
+    //     },
+    // );
+    return ChangeNotifierProvider(
+      create: (context) => LocaleProvider(),
+      builder: (context, child){
+        final provider = Provider.of<LocaleProvider>(context);
+        return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'My Pregnancy',
+              theme: CustomTheme.lightTheme,
+              routes: {
+                '/homePage': (context) => HomePage2(),
+                '/createPasswordPage' : (context) => CreatePasswordPage(),
+                '/passwordAuthPage' : (context) => PasswordAthenPage(),
+                '/loginPage' : (context) => LoginPage(),
+                '/createAccountPage' : (context) => CreateAccountPage(),
+                '/recoverPasswordPage' : (context) => RecoverPasswordPage(),
+                '/settingsPage' : (context) => SettingsPage(),
+                '/disclaimerPage' : (context) => DisclaimerPage(),
+                '/privacyPolicyPage' : (context) => PrivacyPolicyPage(),
+                '/infoPagePage' : (context) => InfoPage(),
+                '/infoPagePage2' : (context) => InfoPage2(),
+                '/pHRPage' : (context) => PHRPage(),
+                '/lastPeriod' : (context) => LastPeriod(),
+                '/measurements' : (context) => MeasurementsPage(),
+                '/weightMeasurements' : (context) => WeightMeasure(),
+                '/pressureMeasurements' : (context) => PressureMeasure(),
+                '/appointementsCalendarPage' : (context) => AppointmentsCalendarPage(),
+                '/AppointmentHistoryPage' : (context) => AppointmentHistoryPage(),
+                '/countersPage' : (context) => CountersPage(),
+                '/babyKicksPage' : (context) => BabyKicksPage(),
+                '/contractionsPage' : (context) => ContractionsPage(),
+              },
+              initialRoute: route,
+              // List all of the app's supported locales here
+              supportedLocales: [
+                Locale('en', ''),
+                Locale('ar', ''),
+                Locale('fr', ''),
+              ],
+              // These delegates make sure that the localization data for the proper language is loaded
+              localizationsDelegates: [
+                // A class which loads the translations from JSON files
+                AppLocalizations.delegate,
+                // Built-in localization of basic text for Material widgets
+                GlobalMaterialLocalizations.delegate,
+                // Built-in localization for text direction LTR/RTL
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              // Returns a locale which will be used by the app
+              localeResolutionCallback: (locale, supportedLocales) {
+                // Check if the current device locale is supported
+                for (var supportedLocale in supportedLocales) {
+                  if (supportedLocale.languageCode == locale!.languageCode) {
+                    return supportedLocale;
+                  }
+                }
+                // If the locale of the device is not supported, use the first one
+                // from the list (English, in this case).
+                return supportedLocales.first;
+              },
+          locale: provider.locale,
+
+        );
       },
     );
   }

@@ -191,8 +191,64 @@
   "pressure_input_tab_error": "Veuillez saisir vos pressions",
 
   "weight_history_Syst_field": " Pression Systolique : ",
-  "weight_history_Dias_field": " Pression diastolique : "
+  "weight_history_Dias_field": " Pression diastolique : ",
 
+  "appointment_page_title": "Rendez-vous",
+  "appointment_page_greenBox": "Jours avec rendez-vous disponibles",
+  "appointment_page_noDates_msgs": "Aucun rendez-vous disponible à cette date",
+  "appointment_page_history": "Historique des rendez-vous",
+  "appointment_page_history_noAppo": "Vous n'avez aucun rendez-vous",
+  "appointment_page_history_dateField": " Date : ",
+  "appointment_page_history_dateField": " Plage horaire : ",
+  "appointment_page_history_dialog_text": "Êtes-vous sûr de vouloir supprimer ce rendez-vous ?",
+  "appointment_page_history_dialog_confirm": "Rendez-vous supprimé",
+  "appointment_page_key1": "Réservé",
+  "appointment_page_key2": "Disponible",
+  "appointment_page_morn": "Matin",
+  "appointment_page_eve": "Soirée",
+  "appointment_page_redButton_msg": "Le créneau horaire que vous avez sélectionné est réservé",
+  "appointment_page_dialog_title": "Prendre rendez-vous",
+  "appointment_page_dialog_msg": "Êtes-vous sûr de vouloir prendre ce rendez-vous ? ",
+  "appointment_page_dialog_conf": "Vous avez pris rendez-vous à",
+  "appointment_page_dialog_error": "Vous ne pouvez prendre qu'un seul rendez-vous par jour",
+
+  "counters_page_title": "Compteurs",
+  "counters_page_btn1": "Contractions",
+  "counters_page_btn2": "Coups de pied",
+
+  "contractions_page_title": "Compteur de contractions",
+  "contractions_page_txtCounter": "Contractions",
+  "contractions_page_btn2": "Démarrer",
+  "contractions_page_btn1": "Arrête",
+  "contractions_page_btn3": "Contractions",
+  "contractions_page_list_field1": "Date et heure",
+  "contractions_page_list_field2": "Quantité",
+  "contractions_page_list_field3": "Durée",
+  "contractions_page_toastMsg": "Enregistré avec succès",
+  "contractions_page_dialog_conf": "Supprimé avec succès",
+
+  "babyKicks_page_title": "Compteur de coups de pied de bébé",
+  "babyKicks_page_txtCounter": "Coups de pied",
+  "babyKicks_page_btn3": "Coup de pied",
+
+
+  "settings_page_popUp_dialogError": "Veuillez entrer votre ancien mot de passe",
+  "settings_page_popUp_dialog_ErrorPwd": "Mot de passe incorrect",
+  "password_creation_page_title2": "Modifier le mot de passe",
+  "internet_errors1": "Quelque chose s'est mal passé, réessayez plus tard",
+  "internet_errors2": "Assurez-vous que vous êtes connecté à Internet",
+  "internet_errors3": "Vous avez besoin d'une connexion Internet pour voir l'image",
+  "internet_errors4": "Vous avez besoin d'une connexion Internet pour enregistrer et visualiser vos coups de pied du bébé",
+  "internet_errors5": "Vous avez besoin d'une connexion Internet pour enregistrer et visualiser vos contractions",
+
+  "pressure_HighAlertdialog_title": "ATTENTION",
+  "pressure_HighAlertdialog_Sys": "Attention! Votre pression systolique est supérieure à 130, veuillez consulter votre médecin dès que possible!",
+  "pressure_HighAlertdialog_Dia": "Attention! Votre pression diastolique est supérieure à 80, veuillez consulter votre médecin dès que possible!",
+  "contraction_HighAlertdialog" : "Vous avez plus de 2 contractions en moins de 10 minutes vous devez contacter votre médecin en urgence !",
+
+  "language_en" : "Anglais",
+  "language_fr" : "Français",
+  "language_ar" : "Arabe"
 
 }
 

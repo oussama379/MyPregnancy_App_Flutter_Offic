@@ -31,8 +31,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
         title: ModalRoute.of(context)!.settings.arguments == null
             ? Text(AppLocalizations.of(context)!
                 .translate('password_creation_page_title'))
-            //TODO translate
-            : Text('Change Password'),
+            : Text(AppLocalizations.of(context)!
+            .translate('password_creation_page_title2')),
       ),
       body: SafeArea(
         child: Container(
@@ -186,10 +186,14 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        _preferencesService.saveWantPassword(false);
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, "/loginPage", (_) => false);
-
+                        if(ModalRoute.of(context)!.settings.arguments == null){
+                          _preferencesService.saveWantPassword(false);
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, "/loginPage", (_) => false);
+                        }else{
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, "/homePage", (_) => false);
+                        }
                         //Navigator.pushNamed(context, "/homePage");
                       },
                       child: Text(

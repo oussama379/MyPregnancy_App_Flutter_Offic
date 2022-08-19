@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:ma_grossesse/ui/pages/appointmenets/widgets/buttonKeys.dart';
 import 'package:ma_grossesse/ui/pages/appointmenets/widgets/timeTextButton.dart';
 
+import '../../../../app_localizations.dart';
+
 class TimeSlotsSection extends StatefulWidget {
   DateTime _selectedDay;
   Map<DateTime, List<String>> timeSlots;
@@ -26,7 +28,7 @@ class _TimeSlotsSectionState extends State<TimeSlotsSection> {
           Container(
             margin: EdgeInsets.only(left: 20, top: 5),
             child: Text(
-              'Morning',
+              AppLocalizations.of(context)!.translate('appointment_page_morn'),
               style: TextStyle(
                 color: Color(0xff363636),
                 fontSize: 20,
@@ -102,7 +104,7 @@ class _TimeSlotsSectionState extends State<TimeSlotsSection> {
           Container(
             margin: EdgeInsets.only(left: 25, top: 20),
             child: Text(
-              'Evening',
+              AppLocalizations.of(context)!.translate('appointment_page_eve'),
               style: TextStyle(
                 color: Color(0xff363636),
                 fontSize: 20,

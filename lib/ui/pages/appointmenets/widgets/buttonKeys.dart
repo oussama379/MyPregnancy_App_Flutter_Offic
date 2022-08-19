@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../app_localizations.dart';
+
 class ButtonKeys extends StatelessWidget {
 
   @override
@@ -25,7 +27,7 @@ class ButtonKeys extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  'reserved',
+                  AppLocalizations.of(context)!.translate('appointment_page_key1'),
                   style: TextStyle(
                     color: Color(0xff363636),
                     fontSize: 15,
@@ -51,7 +53,7 @@ class ButtonKeys extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  'Available',
+                  AppLocalizations.of(context)!.translate('appointment_page_key2'),
                   style: TextStyle(
                     color: Color(0xff363636),
                     fontSize: 15,

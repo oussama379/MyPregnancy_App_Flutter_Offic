@@ -18,7 +18,6 @@
 // class _HomeBottomBarState extends State<HomeBottomBar> {
 //   final _preferencesService = locator.get<PreferencesService>();
 //   int? selectedIndex = null;
-//   //TODO to be removed (test)
 //   final _weightRepo = locator.get<WeightRepo>();
 //
 //   @override
@@ -42,7 +41,6 @@
 //             Navigator.pushNamed(context, '/measurements');
 //           }
 //           if(index == 0 ){
-//             //TODO To be removed
 //             // _preferencesService.deleteDPA();
 //             // _preferencesService.deleteLastPeriodDate();
 //           }

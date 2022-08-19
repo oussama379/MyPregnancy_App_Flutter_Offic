@@ -1,11 +1,14 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:ma_grossesse/ui/pages/appointmenets/appointmentModel.dart';
 
 
+import '../../../../app_localizations.dart';
 import '../../../../locator.dart';
 import '../../../../preferencesService.dart';
 import '../../../shared/toasts.dart';
+import '../../../sharedServices/checkInternetConnection.dart';
 import '../appointmentsRepo.dart';
 
 class AppointmentHistoryPage extends StatefulWidget {
@@ -21,16 +24,59 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
   final _toast = locator.get<toastMsg>();
   final _preferencesService = locator.get<PreferencesService>();
 
+  late Map _source = {ConnectivityResult.wifi: true};
+  final MyConnectivity _connectivity = MyConnectivity.instance;
 
+  //return the status of the internet cnx
+  void updateCnx(){
+    _connectivity.myStream.listen((source) {
+      if (this.mounted) {
+        setState(() {
+          _source = source;
+          print(_source.keys.toList()[0]);
+        });
+      }
+    });
+  }
 
+  @override
+  void initState() {
+    super.initState();
+    _connectivity.initialise();
+    updateCnx();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Appointments History'),
+          title: Text(AppLocalizations.of(context)!.translate('appointment_page_history')),
         ),
         backgroundColor: Colors.white,
-        body: FutureBuilder(
+        body: _source.keys.toList()[0] == ConnectivityResult.none ? Center(
+          child: Container(
+            height: 120.0,
+            width: 300.0,
+            color: Colors.transparent,
+            child: Container(
+                padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                decoration: BoxDecoration(
+                    color: Colors.pinkAccent,
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                child:  Center(
+                  child:  Column(
+                    children: [
+                      SizedBox(height: 10,),
+                      Icon(Icons.signal_wifi_off, size: 40, color: Colors.white,),
+                      SizedBox(height: 5,),
+                      Text(AppLocalizations.of(context)!.translate('info_page_cnx_error_msg'),
+                        style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,),
+                      SizedBox(height: 10,),
+                    ],
+                  ),
+                )),
+          ),
+        ) : FutureBuilder(
         future: _appointmentRepo.getAppointmentPerUser().once(),
         builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
           appointmentsList.clear();
@@ -49,7 +95,7 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
                           color: Colors.pinkAccent,
                           borderRadius: BorderRadius.all(Radius.circular(10.0))),
                       child: new Center(
-                        child: new Text('You have no appointments',
+                        child: new Text(AppLocalizations.of(context)!.translate('appointment_page_history_noAppo'),
                           style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,),
                       )),
@@ -90,7 +136,7 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
                               ),
                               Icon(Icons.date_range),
                               Text(
-                                ' Date : ',
+                                AppLocalizations.of(context)!.translate('appointment_page_history_dateField'),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -107,7 +153,7 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
                               ),
                               Icon(Icons.watch_later_outlined),
                               Text(
-                                ' Time Slot : ',
+                                AppLocalizations.of(context)!.translate('appointment_page_history_timeField'),
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -158,22 +204,22 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
   void _showDeleteDialog(var index){
     showDialog(context: this.context, builder: (context){
       return AlertDialog(
-        title: Text('Delete History'),
-        content: Text('Are you sure you want to delete this Appointment'),
+        title: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_title')),
+        content: Text(AppLocalizations.of(context)!.translate('appointment_page_history_dialog_text')),
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text('Cancel')),
+          }, child: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_cancel'))),
           TextButton(onPressed: (){
             setState(() {
               _appointmentRepo.deleteAppointmentPerUser(appointmentsListKeys[index]);
               _appointmentRepo.deleteAppointmentTimeSlot(appointmentsList[index].date, appointmentsList[index].timeSlot);
               _preferencesService.deleteAppointmentDates(appointmentsList[index].date);
               Navigator.pop(context);
-              _toast.showMsg('Appointment deleted ');
+              _toast.showMsg(AppLocalizations.of(context)!.translate('appointment_page_history_dialog_confirm'));
             });
 
-          }, child: Text('Yes')),
+          }, child: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_confirm'))),
         ],
       );
     });

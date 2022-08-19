@@ -82,14 +82,14 @@ class _InfoPageState extends State<InfoPage2> {
 
   @override
   Widget build(BuildContext context) {
-    return _source.keys.toList()[0] == ConnectivityResult.none ?
+    return
     Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.translate('info_page_title')),
       ),
-      body: Center(
+      body: _source.keys.toList()[0] == ConnectivityResult.none ? Center(
         child: Container(
-          height: 100.0,
+          height: 120.0,
           width: 300.0,
           color: Colors.transparent,
           child: Container(
@@ -97,19 +97,21 @@ class _InfoPageState extends State<InfoPage2> {
               decoration: BoxDecoration(
                   color: Colors.pinkAccent,
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              child: new Center(
-                child: new Text(AppLocalizations.of(context)!.translate('info_page_cnx_error_msg'),
-                  style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,),
+              child:  Center(
+                child:  Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    Icon(Icons.signal_wifi_off, size: 40, color: Colors.white,),
+                    SizedBox(height: 5,),
+                    Text(AppLocalizations.of(context)!.translate('info_page_cnx_error_msg'),
+                      style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,),
+                    SizedBox(height: 10,),
+                  ],
+                ),
               )),
         ),
-      ), )
-        : Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.translate('info_page_title')),
-      ),
-      body: Container(
+      ) : Container(
         color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
@@ -120,7 +122,6 @@ class _InfoPageState extends State<InfoPage2> {
                   alignment: AlignmentDirectional.bottomCenter,
                   children: <Widget>[
                     FutureBuilder(
-                      // TODO i think they are getting loaded at every scroll : To check and fix
                         future:  getMonths().once(),
                         builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
                           if (snapshot.hasData) {
@@ -128,9 +129,8 @@ class _InfoPageState extends State<InfoPage2> {
                             Map<dynamic, dynamic> values = snapshot.data!.value;
                             values.forEach((key, values) {
                               listMonths.add(values);
-                              print(listMonths.length);
                             });
-                            return new
+                            return
                             PageView.builder(
                               scrollDirection: Axis.horizontal,
                               controller: _pageController,

@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -11,6 +12,7 @@ import 'package:ma_grossesse/ui/pages/weightMeasurments/weightRepo.dart';
 import '../../../../app_localizations.dart';
 import '../../../../locator.dart';
 import '../../../shared/toasts.dart';
+import '../../../sharedServices/checkInternetConnection.dart';
 
 class HistoryPagePressure extends StatefulWidget {
 
@@ -23,10 +25,71 @@ class _HistoryPageStatePressure extends State<HistoryPagePressure> {
   List<PressureModel> pressuresList = [];
   List<String>pressuresListKeys = [];
 
+  late Map _source = {ConnectivityResult.wifi: true};
+  final MyConnectivity _connectivity = MyConnectivity.instance;
 
+  //return the status of the internet cnx
+  void updateCnx() {
+    _connectivity.myStream.listen((source) {
+      if (this.mounted) {
+        setState(() {
+          _source = source;
+          print(_source.keys.toList()[0]);
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _connectivity.initialise();
+    updateCnx();
+  }
 
   Widget projectWidget() {
-    return FutureBuilder(
+    return _source.keys.toList()[0] == ConnectivityResult.none
+        ? Center(
+      child: Container(
+        height: 120.0,
+        width: 300.0,
+        color: Colors.transparent,
+        child: Container(
+            padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+            decoration: BoxDecoration(
+                color: Colors.pinkAccent,
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Icon(
+                    Icons.signal_wifi_off,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!
+                        .translate('info_page_cnx_error_msg'),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
+            )),
+      ),
+    ) :  FutureBuilder(
         future: _pressureRepo.getPressureHistoryHistory().once(),
         builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
           pressuresList.clear();

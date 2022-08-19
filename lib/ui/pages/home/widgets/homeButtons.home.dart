@@ -12,7 +12,6 @@ class HomeButtons extends StatelessWidget {
   final Color cMesur = const Color.fromARGB(255, 137, 10, 88);
   final Color cSett = const Color.fromARGB(255, 255, 40, 172);
 
-  // TODO To be removed
   final _preferencesService = locator.get<PreferencesService>();
 
   HomeButtons();
@@ -80,9 +79,6 @@ class HomeButtons extends StatelessWidget {
             ),
             color: cMesur,
             onTap: () {
-              //TODO To be removed
-              _preferencesService.deleteDPA();
-              _preferencesService.deleteLastPeriodDate();
             }),
         RoundButton(
             buttonText: 'SETTINGS',

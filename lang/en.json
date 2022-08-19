@@ -15,6 +15,8 @@
   "password_creation_page_toast_succ" : "The password created successfully",
   "password_creation_page_toast_error" : "Password created unsuccessfully",
 
+
+
   "password_auth_page_title" : "Authentication",
   "password_auth_page_wrongPass" : "Wrong Password",
   "password_auth_page_auth_succ" : "Authenticated Successfully",
@@ -195,5 +197,63 @@
   "pressure_input_tab_error": "Please enter your pressures",
 
   "weight_history_Syst_field": " Systolic Pressure : ",
-  "weight_history_Dias_field": " Diastolic Pressure : "
+  "weight_history_Dias_field": " Diastolic Pressure : ",
+
+  "appointment_page_title": "Appointments",
+  "appointment_page_greenBox": "Days with available appointments",
+  "appointment_page_noDates_msgs": "No available appointments on this date",
+  "appointment_page_history": "Appointments History",
+  "appointment_page_history_noAppo": "You have no appointments",
+  "appointment_page_history_dateField": " Date : ",
+  "appointment_page_history_dateField": " Time Slot : ",
+  "appointment_page_history_dialog_text": "Are you sure you want to delete this Appointment",
+  "appointment_page_history_dialog_confirm": "Appointment deleted ",
+  "appointment_page_key1": "reserved",
+  "appointment_page_key2": "Available",
+  "appointment_page_morn": "Morning",
+  "appointment_page_eve": "Evening",
+  "appointment_page_redButton_msg": "The time slot you selected is reserved",
+  "appointment_page_dialog_title": "Make an appointment",
+  "appointment_page_dialog_msg": "Are you sure you want to make this appointment : ",
+  "appointment_page_dialog_conf": "You made an appointment at",
+  "appointment_page_dialog_error": "You can only make one appointment per day",
+
+  "counters_page_title": "Counters",
+  "counters_page_btn1": "Contractions",
+  "counters_page_btn2": "Baby kicks",
+
+  "contractions_page_title": "Contractions counter",
+  "contractions_page_txtCounter": "Contractions",
+  "contractions_page_btn2": "Start",
+  "contractions_page_btn1": "Stop",
+  "contractions_page_btn3": "Contraction",
+  "contractions_page_list_field1": "Date and Time",
+  "contractions_page_list_field2": "Quantity",
+  "contractions_page_list_field3": "Duration",
+  "contractions_page_toastMsg": "Saved Successfully",
+  "contractions_page_dialog_conf": "Deleted Successfully",
+
+  "babyKicks_page_title": "Baby kicks counter",
+  "babyKicks_page_txtCounter": "Kicks",
+  "babyKicks_page_btn3": "Kick",
+
+
+
+  "settings_page_popUp_dialogError" : "Please enter your old password",
+  "settings_page_popUp_dialog_ErrorPwd" : "Incorrect Password",
+  "password_creation_page_title2" : "Change Password",
+  "internet_errors1": "Something Went wrong try again later",
+  "internet_errors2": "Make sure you are connected to the internet",
+  "internet_errors3": "You need internet connection to see the image",
+  "internet_errors4": "You need internet connection to save and view your Baby kicks",
+  "internet_errors5": "You need internet connection to save and view your contractions",
+
+  "pressure_HighAlertdialog_title" : "ATTENTION",
+  "pressure_HighAlertdialog_Sys" : "Attention! Your systolic pressure is above 130 please consult your doctor as soon as possible!",
+  "pressure_HighAlertdialog_Dia" : "Attention! Your diastolic pressure is over 80 please consult your doctor as soon as possible!",
+  "contraction_HighAlertdialog" : "You have more than 2 contractions in less than 10 minutes you must contact your doctor urgently!",
+
+  "language_en" : "English",
+  "language_fr" : "French",
+  "language_ar" : "Arabic"
 }

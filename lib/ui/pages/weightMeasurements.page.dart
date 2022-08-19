@@ -17,9 +17,9 @@ class _WeightMeasureState extends State<WeightMeasure> {
   @override
   Widget build(BuildContext context) {
     Map<int, Widget> _children = {
-      0: Row(mainAxisAlignment: MainAxisAlignment.center, children: [SizedBox(width: 7,), Text(AppLocalizations.of(context)!.translate('weight_page_tab_1'), style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(width: 7,) , Icon(Icons.input),SizedBox(width: 7,)]),
-      1: Row(mainAxisAlignment: MainAxisAlignment.center, children: [SizedBox(width: 7,), Text(AppLocalizations.of(context)!.translate('weight_page_tab_2'), style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(width: 7,) , Icon(Icons.history),SizedBox(width: 7,)]),
-      2: Row(mainAxisAlignment: MainAxisAlignment.center, children: [SizedBox(width: 7,), Text(AppLocalizations.of(context)!.translate('weight_page_tab_3'), style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(width: 7,) , Icon(Icons.area_chart),SizedBox(width: 7,)]),
+      0: Row(mainAxisAlignment: MainAxisAlignment.center, children: [SizedBox(width: 5,), Text(AppLocalizations.of(context)!.translate('weight_page_tab_1'), style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(width: 5,) , Icon(Icons.input, size: 15,),SizedBox(width: 5,)]),
+      1: Row(mainAxisAlignment: MainAxisAlignment.center, children: [SizedBox(width: 5,), Text(AppLocalizations.of(context)!.translate('weight_page_tab_2'), style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(width: 5,) , Icon(Icons.history, size: 15,),SizedBox(width: 5,)]),
+      2: Row(mainAxisAlignment: MainAxisAlignment.center, children: [SizedBox(width: 5,), Text(AppLocalizations.of(context)!.translate('weight_page_tab_3'), style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(width: 5,) , Icon(Icons.area_chart, size: 15,),SizedBox(width: 5,)]),
     };
     return Scaffold(
       appBar: AppBar(

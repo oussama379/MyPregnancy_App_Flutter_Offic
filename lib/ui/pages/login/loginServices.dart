@@ -35,7 +35,7 @@ class LoginServices {
         print('Wrong password provided for that user.');
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.translate('login_page_email_field_error_wrong'))));
       }else
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.translate('passwordAuth_page_other_error'))));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.translate('password_auth_page_other_error'))));
       print(e.code);
     }
   }

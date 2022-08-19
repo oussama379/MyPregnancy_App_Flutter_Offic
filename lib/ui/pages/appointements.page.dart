@@ -1,12 +1,15 @@
 import 'dart:convert';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ma_grossesse/ui/pages/appointmenets/timeSlotModel.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../app_localizations.dart';
 import '../../locator.dart';
+import '../sharedServices/checkInternetConnection.dart';
 import 'appointmenets/appointmentModel.dart';
 import 'appointmenets/appointmentsRepo.dart';
 import 'appointmenets/widgets/buttonKeys.dart';
@@ -30,9 +33,26 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
   int counter = 2;
   List<AppointmentModel> appointmentsList = [];
 
+  late Map _source = {ConnectivityResult.wifi: true};
+  final MyConnectivity _connectivity = MyConnectivity.instance;
+
+  //return the status of the internet cnx
+  void updateCnx(){
+    _connectivity.myStream.listen((source) {
+      if (this.mounted) {
+        setState(() {
+          _source = source;
+          print(_source.keys.toList()[0]);
+        });
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    _connectivity.initialise();
+    updateCnx();
     //_appointmentsRepo.getBookedSlots();
   }
 
@@ -44,7 +64,7 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
       _focusedDay = settings.arguments as DateTime;
     }
     return Scaffold(
-      appBar: AppBar(title: Text('Appointments'), actions: <Widget>[
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.translate('appointment_page_title')), actions: <Widget>[
         Stack(
           children: <Widget>[
             IconButton(
@@ -55,47 +75,34 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                     //counter = 0;
                   });
                 }),
-           // FutureBuilder(
-           //        future: _appointmentsRepo.getAppointmentPerUser().once(),
-           //        builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
-           //          appointmentsList.clear();
-           //          if (snapshot.hasData) {
-           //            Map<dynamic, dynamic> values = snapshot.data!.value;
-           //            values.forEach((key, values) {
-           //              appointmentsList.add(AppointmentModel.fromJson(values));
-           //            });
-           //            return Positioned(
-           //              right: 11,
-           //              top: 11,
-           //              child: new Container(
-           //                padding: EdgeInsets.all(2),
-           //                decoration: new BoxDecoration(
-           //                  color: Colors.red,
-           //                  borderRadius: BorderRadius.circular(10),
-           //                ),
-           //                constraints: BoxConstraints(
-           //                  minWidth: 14,
-           //                  minHeight: 14,
-           //                ),
-           //                child: Text(
-           //                  appointmentsList.length.toString(),
-           //                  style: TextStyle(
-           //                    color: Colors.white,
-           //                    fontSize: 8,
-           //                  ),
-           //                  textAlign: TextAlign.center,
-           //                ),
-           //              ),
-           //            );
-           //          }else{
-           //            return Container();
-           //          }
-           //        }
-           //      )
           ],
         ),
       ]),
-      body: SingleChildScrollView(
+      body: _source.keys.toList()[0] == ConnectivityResult.none ? Center(
+        child: Container(
+          height: 120.0,
+          width: 300.0,
+          color: Colors.transparent,
+          child: Container(
+              padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+              decoration: BoxDecoration(
+                  color: Colors.pinkAccent,
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              child:  Center(
+                child:  Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    Icon(Icons.signal_wifi_off, size: 40, color: Colors.white,),
+                    SizedBox(height: 5,),
+                    Text(AppLocalizations.of(context)!.translate('info_page_cnx_error_msg'),
+                      style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,),
+                    SizedBox(height: 10,),
+                  ],
+                ),
+              )),
+        ),
+      ) : SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -116,7 +123,7 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                     width: 10,
                   ),
                   Text(
-                    'Days with available appointments',
+                    AppLocalizations.of(context)!.translate('appointment_page_greenBox'),
                     style: TextStyle(
                       color: Color(0xff363636),
                       fontSize: 15,
@@ -170,6 +177,7 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                       children: [
                         Container(
                           child: TableCalendar(
+                            locale: Localizations.localeOf(context).toString(),
                             headerStyle: HeaderStyle(
                               formatButtonVisible: false,
                               titleTextFormatter: (date, locale) =>
@@ -261,7 +269,7 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                                             Radius.circular(10.0))),
                                     child: new Center(
                                       child: new Text(
-                                        'No available appointments on this date',
+                                        AppLocalizations.of(context)!.translate('appointment_page_noDates_msgs'),
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,

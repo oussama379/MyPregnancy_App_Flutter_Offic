@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
@@ -7,6 +8,7 @@ import 'package:ma_grossesse/ui/pages/weightMeasurments/weightRepo.dart';
 import '../../../../app_localizations.dart';
 import '../../../../locator.dart';
 import '../../../shared/toasts.dart';
+import '../../../sharedServices/checkInternetConnection.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -20,6 +22,30 @@ class _InputPageState extends State<InputPage> {
   DateTime? _date = null;
   DateTime? _time = null;
   final _weightRepo = locator.get<WeightRepo>();
+
+
+  late Map _source = {ConnectivityResult.wifi: true};
+  final MyConnectivity _connectivity = MyConnectivity.instance;
+
+  //return the status of the internet cnx
+  void updateCnx() {
+    _connectivity.myStream.listen((source) {
+      if (this.mounted) {
+        setState(() {
+          _source = source;
+          print(_source.keys.toList()[0]);
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _connectivity.initialise();
+    updateCnx();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +64,14 @@ class _InputPageState extends State<InputPage> {
                         if (value == null || value.isEmpty) {
                           return AppLocalizations.of(context)!.translate('weight_input_tab_weightField_error1');
                         }
+                        if(double.tryParse(value) == null){
+                          return AppLocalizations.of(context)!.translate('createAccount_page_phone_field_noValid');
+                          //return 'The input is not a numeric value';
+                        }
                         if (double.parse(value) <= 0) {
                           return AppLocalizations.of(context)!.translate('weight_input_tab_weightField_error2');
                         }
+
                         return null;
                       },
                       decoration: InputDecoration(
@@ -143,11 +174,13 @@ class _InputPageState extends State<InputPage> {
                         print("Successful");
                         WeightModel W = _weightRepo.prepareWeightModel(
                             int.parse(_weight.text), _date!, _time!);
-                        //print(W.toString());
-                        //print(W.toJson());
-                        _weightRepo.SaveWeightMeasurements(W.toJson());
-                        _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_saved_ok'));
-                        setState(() {
+                       if(_source.keys.toList()[0] != ConnectivityResult.none){
+                         _weightRepo.SaveWeightMeasurements(W.toJson());
+                         _toast.showMsg(AppLocalizations.of(context)!.translate('weight_input_tab_saved_ok'));
+
+                       }else{
+                         _toast.showMsg(AppLocalizations.of(context)!.translate('internet_errors2'));                       }
+                       setState(() {
                           _date = null;
                           _time = null;
                           _weight.clear();

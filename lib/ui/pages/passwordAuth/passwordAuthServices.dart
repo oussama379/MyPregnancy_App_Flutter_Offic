@@ -54,8 +54,7 @@ class PasswordAuthServices {
       if(e.code == 'invalid-email')
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.translate('recoverPass_page_email_field_noValid'), style: TextStyle(fontSize: 17),)));
       else
-        //TODO translate
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Something Went wrong try again later ', style: TextStyle(fontSize: 17),)));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.translate('internet_errors1'), style: TextStyle(fontSize: 17),)));
 
     }
   }

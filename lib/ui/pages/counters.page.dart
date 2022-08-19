@@ -10,7 +10,7 @@ class CountersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: Text('Counters'),
+        title: Text(AppLocalizations.of(context)!.translate('counters_page_title')),
     ),
     body: Center(
       child: GridView.count(
@@ -22,7 +22,7 @@ class CountersPage extends StatelessWidget {
         crossAxisCount: 1,
         children: <Widget>[
           RoundButton(
-              buttonText: 'Contractions',
+              buttonText: AppLocalizations.of(context)!.translate('counters_page_btn1'),
               icon: Icon(
                 DBIcons.image2vector__1_,
                 color: Colors.white,
@@ -33,7 +33,7 @@ class CountersPage extends StatelessWidget {
                 Navigator.pushNamed(context, '/contractionsPage');
               }),
           RoundButton(
-              buttonText: 'Baby kicks',
+              buttonText: AppLocalizations.of(context)!.translate('counters_page_btn2'),
               icon: Icon(DBIcons.feet, color: Colors.white,
                 size: 45,),
               color:  Colors.pinkAccent,

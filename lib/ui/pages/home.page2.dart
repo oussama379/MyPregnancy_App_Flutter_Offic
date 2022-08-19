@@ -1,23 +1,31 @@
 import 'dart:async';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
+import 'package:ma_grossesse/main.dart';
 import 'package:ma_grossesse/ui/pages/home/services/homeServices.dart';
 import 'package:ma_grossesse/ui/pages/home/widgets/sideText.home.dart';
+import 'package:provider/provider.dart';
 
 import '../../app_localizations.dart';
+import '../../localeProvider.dart';
 import '../../locator.dart';
 import '../../preferencesService.dart';
+import '../sharedServices/checkInternetConnection.dart';
 import 'home/widgets/aboutAlertDialog.dart';
 import 'home/widgets/bottomBar.home.dart';
 import 'home/widgets/drawer.home.dart';
 import 'home/widgets/homeButtons.home.dart';
+import 'home/widgets/languageSection.dart';
 import 'home/widgets/progressCircle.home.dart';
 import 'home/widgets/roundButton.home.dart';
-import 'package:nice_button/nice_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:country_icons/country_icons.dart';
+
 
 import '../../globals.dart' as globals;
 
@@ -34,6 +42,21 @@ class _HomePageState extends State<HomePage2> {
   var _lastPeriodFromPref = globals.lastPeriodDate;
   var _weekImage;
   var firstColor = Color(0xffff80ab), secondColor = Color(0xffe91e63);
+
+  late Map _source = {ConnectivityResult.wifi: true};
+  final MyConnectivity _connectivity = MyConnectivity.instance;
+
+  //return the status of the internet cnx
+  void updateCnx() {
+    _connectivity.myStream.listen((source) {
+      if (this.mounted) {
+        setState(() {
+          _source = source;
+          print(_source.keys.toList()[0]);
+        });
+      }
+    });
+  }
 
   Future<void> onClick() async {
     DateTime? newDateTime = await showRoundedDatePicker(
@@ -103,6 +126,10 @@ class _HomePageState extends State<HomePage2> {
   @override
   void initState() {
     super.initState();
+
+    _connectivity.initialise();
+    updateCnx();
+
     getDpaFromPref();
     getLastPeriodFromPref();
     initImage();
@@ -131,9 +158,13 @@ class _HomePageState extends State<HomePage2> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MyPregnancy'),
+      appBar: AppBar(title: Text('MyPregnancy'),
+        actions: [
+          LanguageSection(),
+        ],
+
       ),
+
       drawer: HomeDrawer(),
       body: ListView(
         children: [
@@ -173,53 +204,128 @@ class _HomePageState extends State<HomePage2> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                child: _lastPeriodFromPref == null
-                    ? Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 95.r,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                AppLocalizations.of(context)!
-                                    .translate('home_page_ImagesMsg'),
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15.sp),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            backgroundColor: Colors.grey,
-                          ),
-                          OutlinedButton.icon(
-                            // foreground
-                            onPressed: () {
-                              onClick();
-                              //Navigator.pushNamed(context, "/lastPeriod");
-                            },
-                            icon: const Icon(Icons.create),
-                            label: Text(AppLocalizations.of(context)!
-                                .translate('home_page_LastPeriodButton')),
-                          )
-                        ],
-                      )
-                    : _weekImage != null
-                        ? Column(
-                            children: [
-                              CircleAvatar(
-                                radius: 95.r,
-                                child: ClipOval(
-                                  child: Image.network(
-                                    _weekImage,
-                                    width: 190,
-                                    height: 190,
-                                    fit: BoxFit.fill,
+              _source.keys.toList()[0] != ConnectivityResult.none
+                  ? Container(
+                      child: _lastPeriodFromPref == null
+                          ? Column(
+                              children: [
+                                CircleAvatar(
+                                  radius: 95.r,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      AppLocalizations.of(context)!
+                                          .translate('home_page_ImagesMsg'),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15.sp),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
+                                  backgroundColor: Colors.grey,
                                 ),
-                              ),
-                              OutlinedButton.icon(
+                                OutlinedButton.icon(
+                                  // foreground
+                                  onPressed: () {
+                                    onClick();
+                                    //Navigator.pushNamed(context, "/lastPeriod");
+                                  },
+                                  icon: const Icon(Icons.create),
+                                  label: Text(AppLocalizations.of(context)!
+                                      .translate('home_page_LastPeriodButton')),
+                                )
+                              ],
+                            )
+                          : _weekImage != null
+                              ? Column(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 95.r,
+                                      child: ClipOval(
+                                        child: Image.network(
+                                          _weekImage,
+                                          width: 190,
+                                          height: 190,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                    OutlinedButton.icon(
+                                      // foreground
+                                      onPressed: () {
+                                        onClick();
+                                        //Navigator.pushNamed(context, "/lastPeriod");
+                                      },
+                                      icon: const Icon(Icons.create),
+                                      label: Text(AppLocalizations.of(context)!
+                                          .translate(
+                                              'home_page_ChangeLastPeriodButton')),
+                                    )
+                                  ],
+                                )
+                              : CircularProgressIndicator(),
+                    )
+                  : Column(
+                      children: [
+                        Container(
+                          child: Container(
+                            height: 120.0,
+                            width: 150.0,
+                            color: Colors.transparent,
+                            child: Container(
+                                padding: const EdgeInsets.only(
+                                    right: 10.0, left: 10.0),
+                                decoration: BoxDecoration(
+                                    color: Colors.pinkAccent,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(80.0))),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Icon(
+                                        Icons.signal_wifi_off,
+                                        size: 40,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        AppLocalizations.of(context)!
+                                            .translate('internet_errors3'),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        _lastPeriodFromPref == null
+                            ? OutlinedButton.icon(
+                                // foreground
+                                onPressed: () {
+                                  onClick();
+                                  //Navigator.pushNamed(context, "/lastPeriod");
+                                },
+                                icon: const Icon(Icons.create),
+                                label: Text(AppLocalizations.of(context)!
+                                    .translate('home_page_LastPeriodButton')),
+                              )
+                            : OutlinedButton.icon(
                                 // foreground
                                 onPressed: () {
                                   onClick();
@@ -229,16 +335,18 @@ class _HomePageState extends State<HomePage2> {
                                 label: Text(AppLocalizations.of(context)!
                                     .translate(
                                         'home_page_ChangeLastPeriodButton')),
-                              )
-                            ],
-                          )
-                        : CircularProgressIndicator(),
-              ),
+                              ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
             ],
           ),
+
           Padding(
             padding: const EdgeInsets.only(bottom: 15, top: 5),
             child: Row(
@@ -246,48 +354,125 @@ class _HomePageState extends State<HomePage2> {
               children: [
                 Column(
                   children: [
-                    NiceButton(
-                      width: 50,
-                      radius: 40,
-                      mini: true,
-                      padding: const EdgeInsets.all(10),
-                      icon: Icons.pregnant_woman,
-                      gradientColors: [secondColor, firstColor],
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/infoPagePage2');
-                      },
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.translate('home_page_INFO'),
-                      style: TextStyle(
-                        fontSize: 15.0.sp,
-
-                        color: Colors.pinkAccent,
+                    SizedBox(
+                      width: 120.0.w,
+                      height: 75.0.h,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Icon(
+                              Icons.pregnant_woman,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .translate('home_page_INFO'),
+                              style: TextStyle(
+                                fontSize: 15.0.sp,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/infoPagePage2');
+                        },
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Column(
                   children: [
-                    NiceButton(
-                      width: 50,
-                      radius: 40,
-                      mini: true,
-                      padding: const EdgeInsets.all(10),
-                      icon: Icons.insert_drive_file_rounded,
-                      gradientColors: [secondColor, firstColor],
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/pHRPage');
-                      },
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.translate('home_page_PHR'),
-                      style: TextStyle(
-                        fontSize: 15.0.sp,
-
-                        color: Colors.pinkAccent,
+                    SizedBox(
+                      width: 110.0.w,
+                      height: 75.0.h,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Icon(
+                              Icons.timer,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .translate('home_page_Navig_Btn_2'),
+                              style: TextStyle(
+                                fontSize: 15.0.sp,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/countersPage');
+                        },
                       ),
-                    )
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      width: 100.0.w,
+                      height: 75.0.h,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Icon(
+                              Icons.insert_drive_file_rounded,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .translate('home_page_PHR'),
+                              style: TextStyle(
+                                fontSize: 15.0.sp,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/pHRPage');
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -300,71 +485,85 @@ class _HomePageState extends State<HomePage2> {
               children: [
                 Column(
                   children: [
-                    NiceButton(
-                      width: 50,
-                      radius: 40,
-                      mini: true,
-                      padding: const EdgeInsets.all(10),
-                      icon: Icons.calendar_today,
-                      gradientColors: [secondColor, firstColor],
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/appointementsCalendarPage');
-                      },
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.translate('home_page_Navig_Btn_1'),
-                      style: TextStyle(
-                        fontSize: 15.0.sp,
-
-                        color: Colors.pinkAccent,
+                    SizedBox(
+                      width: 140.0.w,
+                      height: 75.0.h,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Icon(
+                              Icons.calendar_today,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .translate('home_page_Navig_Btn_1'),
+                              style: TextStyle(
+                                fontSize: 15.0.sp,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, '/appointementsCalendarPage');
+                        },
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Column(
                   children: [
-                    NiceButton(
-                      width: 50,
-                      radius: 40,
-                      mini: true,
-                      padding: const EdgeInsets.all(10),
-                      icon: Icons.timer,
-                      gradientColors: [secondColor, firstColor],
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/countersPage');
-                      },
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.translate('home_page_Navig_Btn_2'),
-                      style: TextStyle(
-                        fontSize: 15.0.sp,
-
-                        color: Colors.pinkAccent,
+                    SizedBox(
+                      width: 140.0.w,
+                      height: 75.0.h,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Icon(
+                              Icons.monitor_weight,
+                              color: Colors.white,
+                              size: 25,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .translate('home_page_Navig_Btn_3'),
+                              style: TextStyle(
+                                fontSize: 15.0.sp,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/measurements');
+                        },
                       ),
-                    )
-                  ],
-                ),
-                Column(
-                  children: [
-                    NiceButton(
-                      width: 50,
-                      radius: 40,
-                      mini: true,
-                      padding: const EdgeInsets.all(10),
-                      icon: Icons.monitor_weight,
-                      gradientColors: [secondColor, firstColor],
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/measurements');
-                      },
                     ),
-                    Text(
-                      AppLocalizations.of(context)!.translate('home_page_Navig_Btn_3'),
-                      style: TextStyle(
-                        fontSize: 15.0.sp,
-
-                        color: Colors.pinkAccent,
-                      ),
-                    )
                   ],
                 ),
               ],
@@ -377,4 +576,5 @@ class _HomePageState extends State<HomePage2> {
       //bottomNavigationBar: HomeBottomBar(),
     );
   }
+
 }

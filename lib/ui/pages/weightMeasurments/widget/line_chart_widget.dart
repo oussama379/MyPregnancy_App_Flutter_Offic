@@ -61,14 +61,14 @@ class _LineChartWidgetState extends State<LineChartWidget> {
                   child: Container(
                       padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                       decoration: BoxDecoration(
-                          color: Colors.pinkAccent,
+                          color: Colors.transparent,
                           borderRadius:
                               BorderRadius.all(Radius.circular(10.0))),
                       child: new Center(
                         child: new Text(
                           AppLocalizations.of(context)!.translate('weight_history_noHistory'),
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.pinkAccent,
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,

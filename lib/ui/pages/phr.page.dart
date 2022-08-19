@@ -77,7 +77,7 @@ class _PHRPageState extends State<PHRPage> {
       ),
       body: Center(
         child: Container(
-          height: 100.0,
+          height: 120.0,
           width: 300.0,
           color: Colors.transparent,
           child: Container(
@@ -85,10 +85,18 @@ class _PHRPageState extends State<PHRPage> {
               decoration: BoxDecoration(
                   color: Colors.pinkAccent,
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              child: new Center(
-                child: new Text(AppLocalizations.of(context)!.translate('info_page_cnx_error_msg'),
-                  style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,),
+              child:  Center(
+                child:  Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    Icon(Icons.signal_wifi_off, size: 40, color: Colors.white,),
+                    SizedBox(height: 5,),
+                    Text(AppLocalizations.of(context)!.translate('info_page_cnx_error_msg'),
+                      style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,),
+                    SizedBox(height: 10,),
+                  ],
+                ),
               )),
         ),
       ), )

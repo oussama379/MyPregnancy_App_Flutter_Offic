@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ma_grossesse/ui/pages/pressureMeasurments/tabs/HistoryTabPressure.dart';
@@ -9,6 +10,7 @@ import 'package:ma_grossesse/ui/pages/weightMeasurments/tabs/chartTab.dart';
 import 'package:material_segmented_control/material_segmented_control.dart';
 
 import '../../app_localizations.dart';
+import '../sharedServices/checkInternetConnection.dart';
 
 class PressureMeasure extends StatefulWidget {
   @override
@@ -19,55 +21,77 @@ class _PressureMeasureState extends State<PressureMeasure> {
 
   var _currentSelection = 0;
 
+  late Map _source = {ConnectivityResult.wifi: true};
+  final MyConnectivity _connectivity = MyConnectivity.instance;
+
+  //return the status of the internet cnx
+  void updateCnx() {
+    _connectivity.myStream.listen((source) {
+      if (this.mounted) {
+        setState(() {
+          _source = source;
+          print(_source.keys.toList()[0]);
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _connectivity.initialise();
+    updateCnx();
+  }
+
   @override
   Widget build(BuildContext context) {
     Map<int, Widget> _children = {
       0: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         SizedBox(
-          width: 7,
+          width: 5,
         ),
         Text(
           AppLocalizations.of(context)!.translate('weight_page_tab_1'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         SizedBox(
-          width: 7,
+          width: 5,
         ),
-        Icon(Icons.input),
+        Icon(Icons.input, size: 15,),
         SizedBox(
-          width: 7,
+          width: 5,
         )
       ]),
       1: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         SizedBox(
-          width: 7,
+          width: 5,
         ),
         Text(
           AppLocalizations.of(context)!.translate('weight_page_tab_2'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         SizedBox(
-          width: 7,
+          width: 5,
         ),
-        Icon(Icons.history),
+        Icon(Icons.history, size: 15,),
         SizedBox(
-          width: 7,
+          width: 5,
         )
       ]),
       2: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         SizedBox(
-          width: 7,
+          width: 5,
         ),
         Text(
           AppLocalizations.of(context)!.translate('weight_page_tab_3'),
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         SizedBox(
-          width: 7,
+          width: 5,
         ),
-        Icon(Icons.area_chart),
+        Icon(Icons.area_chart, size: 15,),
         SizedBox(
-          width: 7,
+          width: 5,
         )
       ]),
     };
@@ -91,10 +115,11 @@ class _PressureMeasureState extends State<PressureMeasure> {
             });
           },
         ),
-        if (_currentSelection == 0) Center(child: InputPagePressure()),
+        if (_currentSelection == 0) InputPagePressure(),
         if (_currentSelection == 1) HistoryPagePressure(),
+
         if (_currentSelection == 2) ChartPagePressure(),
-        if (_currentSelection == 2)
+        if (_source.keys.toList()[0] != ConnectivityResult.none && _currentSelection == 2)
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(

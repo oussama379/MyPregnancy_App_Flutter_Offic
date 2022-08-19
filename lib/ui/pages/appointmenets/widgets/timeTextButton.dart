@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ma_grossesse/ui/pages/appointements.page.dart';
 
+import '../../../../app_localizations.dart';
 import '../../../../locator.dart';
 import '../../../../preferencesService.dart';
 import '../../../shared/toasts.dart';
@@ -30,7 +31,6 @@ class _TimeTextButtonState extends State<TimeTextButton> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -45,7 +45,7 @@ class _TimeTextButtonState extends State<TimeTextButton> {
       ),
       child: OutlinedButton.icon(
         onPressed: () {
-          _toast.showMsg('The time slot you selected is reserved');
+          _toast.showMsg(AppLocalizations.of(context)!.translate('appointment_page_redButton_msg'));
           // print(selectedDate);
         },
         icon: const Icon(
@@ -97,20 +97,19 @@ class _TimeTextButtonState extends State<TimeTextButton> {
   void _showAppConfirmDialog(DateTime dateTime, String timeSlot){
 
     showDialog(context: this.context,
-        //TODO to be tested
         barrierDismissible: false,
         builder: (context){
 
       return AlertDialog(
-        title: Text('Make an appointment'),
+        title: Text(AppLocalizations.of(context)!.translate('appointment_page_dialog_title')),
         content: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Are you sure you want to make this appointment : '),
+            Text(AppLocalizations.of(context)!.translate('appointment_page_dialog_msg')),
             SizedBox(height: 10,),
-            Text('Time : '+timeSlot, style: TextStyle(fontWeight: FontWeight.bold),),
-            Text('Date : '+dateTime.day.toString() +'/'+dateTime.month.toString() +'/'+dateTime.year.toString(), style: TextStyle(fontWeight: FontWeight.bold),)
+            Text(AppLocalizations.of(context)!.translate('weight_history_time_field')+timeSlot, style: TextStyle(fontWeight: FontWeight.bold),),
+            Text(AppLocalizations.of(context)!.translate('weight_history_date_field')+dateTime.day.toString() +'/'+dateTime.month.toString() +'/'+dateTime.year.toString(), style: TextStyle(fontWeight: FontWeight.bold),)
           ],
         ),
         actions: [
@@ -120,7 +119,7 @@ class _TimeTextButtonState extends State<TimeTextButton> {
                 context,
                 "/appointementsCalendarPage"
             );
-          }, child: Text('Cancel')),
+          }, child: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_cancel'))),
           TextButton(onPressed: () async {
             bool savedOrNot = await _preferencesService.saveAppointmentDates(dateTime);
             setState(() {
@@ -132,7 +131,7 @@ class _TimeTextButtonState extends State<TimeTextButton> {
                     context,
                     "/appointementsCalendarPage"
                 );
-                _toast.showMsg('You made an appointment at : '+dateTime.day.toString() +'/'+dateTime.month.toString() +'/'+dateTime.year.toString()+' : '+timeSlot);
+                _toast.showMsg(AppLocalizations.of(context)!.translate('appointment_page_dialog_conf')+dateTime.day.toString() +'/'+dateTime.month.toString() +'/'+dateTime.year.toString()+' : '+timeSlot);
                 //Navigator.pushNamedAndRemoveUntil(context, "/appointementsCalendarPage", (_) => true);
               }else{
                  Navigator.pop(context);
@@ -140,10 +139,10 @@ class _TimeTextButtonState extends State<TimeTextButton> {
                      context,
                      "/appointementsCalendarPage"
                  );
-                _toast.showMsg('You can only make one appointment per day');
+                _toast.showMsg(AppLocalizations.of(context)!.translate('appointment_page_dialog_error'));
               }
             });
-          }, child: Text('Yes')),
+          }, child: Text(AppLocalizations.of(context)!.translate('weight_history_dialog_confirm'))),
         ],
       );
     });

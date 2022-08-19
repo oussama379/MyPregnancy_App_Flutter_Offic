@@ -31,4 +31,14 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <!-- I added this -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+    </queries>
+    <!-- /I added this -->
+
+
 </manifest>

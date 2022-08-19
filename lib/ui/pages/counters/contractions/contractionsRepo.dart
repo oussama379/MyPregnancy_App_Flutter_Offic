@@ -49,5 +49,17 @@ class ContractionsRepo   {
     reference.child(key).remove().whenComplete(() { print('Done'); return true;});
     return true;
   }
+
+  int calculateDur(String dur){
+    var tab;
+    int min, sec;
+    tab = dur.split(":");
+    min = int.parse(tab[0]);
+    sec = int.parse(tab[1]);
+    min = min*60;
+    return min + sec;
+
+  }
+
   ContractionsRepo();
 }
