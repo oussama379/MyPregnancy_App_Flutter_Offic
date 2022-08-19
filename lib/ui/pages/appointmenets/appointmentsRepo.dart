@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:intl/intl.dart';
 import 'package:ma_grossesse/ui/pages/appointmenets/appointmentModel.dart';
 import '../../../globals.dart' as globals;
+import '../../sharedServices/notificationService.dart';
 import 'timeSlotModel.dart';
 class AppointmentsRepo{
 
@@ -78,6 +79,9 @@ class AppointmentsRepo{
   }
 
   Future<void> saveAppointmentPerUser(DateTime dateTime, String timeSlot) async {
+    NotificationService().showNotification(
+        1, "Rappel de rendez-vous", "N'oubliez pas votre rendez-vous demain à : $timeSlot", dateTime);
+
     if(timeSlot == '09h-10h') timeSlot = 'c1';
     if(timeSlot == '10h-11h') timeSlot = 'c2';
     if(timeSlot == '11h-12h') timeSlot = 'c3';
@@ -107,6 +111,7 @@ class AppointmentsRepo{
         .child("rdv")
         .child(key)
         .set(json);
+
   }
   final Query _AppointmentHistory = FirebaseDatabase.instance
       .reference()

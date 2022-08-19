@@ -66,6 +66,7 @@ dependencies:
   table_calendar: ^3.0.6
   simple_timer: ^2.0.0
   country_icons: ^2.0.2
+  flutter_local_notifications: ^8.0.0
 
 
 

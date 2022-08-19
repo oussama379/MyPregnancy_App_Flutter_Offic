@@ -28,6 +28,7 @@ import 'package:ma_grossesse/ui/pages/recoverPassword.page.dart';
 import 'package:ma_grossesse/ui/pages/settings.page.dart';
 import 'package:ma_grossesse/ui/pages/weightMeasurements.page.dart';
 import 'package:ma_grossesse/ui/sharedServices/checkInternetConnection.dart';
+import 'package:ma_grossesse/ui/sharedServices/notificationService.dart';
 import 'package:provider/provider.dart';
 import './theme/custom_theme.dart';
 import 'package:flutter/services.dart';
@@ -47,7 +48,8 @@ var UID;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-
+ //initialise notifications
+  NotificationService().initNotification();
   // Disable Landscape Mode
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

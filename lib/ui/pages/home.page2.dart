@@ -16,6 +16,7 @@ import '../../localeProvider.dart';
 import '../../locator.dart';
 import '../../preferencesService.dart';
 import '../sharedServices/checkInternetConnection.dart';
+import '../sharedServices/notificationService.dart';
 import 'home/widgets/aboutAlertDialog.dart';
 import 'home/widgets/bottomBar.home.dart';
 import 'home/widgets/drawer.home.dart';
@@ -25,6 +26,8 @@ import 'home/widgets/progressCircle.home.dart';
 import 'home/widgets/roundButton.home.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:country_icons/country_icons.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 
 import '../../globals.dart' as globals;
@@ -126,7 +129,7 @@ class _HomePageState extends State<HomePage2> {
   @override
   void initState() {
     super.initState();
-
+    tz.initializeTimeZones();
     _connectivity.initialise();
     updateCnx();
 

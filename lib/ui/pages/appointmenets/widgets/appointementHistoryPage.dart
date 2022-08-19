@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ma_grossesse/ui/pages/appointmenets/appointmentModel.dart';
 
 
@@ -102,8 +103,15 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
                 ),
               );
             values.forEach((key, values) {
-              appointmentsListKeys.add(key);
-              appointmentsList.add(AppointmentModel.fromJson(values));
+              AppointmentModel appointmentModel = AppointmentModel.fromJson(values);
+              DateTime dt =  DateFormat('dd-MM-yyyy').parse(appointmentModel.date);
+                if (dt.isAfter(DateTime.now()) ||
+                    dt.year == DateTime.now().year &&
+                        dt.month == DateTime.now().month &&
+                        dt.day == DateTime.now().day) {
+                appointmentsListKeys.add(key);
+                appointmentsList.add(AppointmentModel.fromJson(values));
+              }
             });
             return ListView.builder(
               shrinkWrap: true,
