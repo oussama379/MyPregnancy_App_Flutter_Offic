@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ma_grossesse_offi">
    <application
-        android:label="ma_grossesse_offi"
+        android:label="MyPregnancy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

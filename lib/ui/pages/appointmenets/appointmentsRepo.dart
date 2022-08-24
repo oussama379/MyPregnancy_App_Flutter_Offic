@@ -81,6 +81,7 @@ class AppointmentsRepo{
   Future<void> saveAppointmentPerUser(DateTime dateTime, String timeSlot) async {
     NotificationService().showNotification(
         1, "Rappel de rendez-vous", "N'oubliez pas votre rendez-vous demain à : $timeSlot", dateTime);
+    print(dateTime.difference(DateTime.now()).inDays);
 
     if(timeSlot == '09h-10h') timeSlot = 'c1';
     if(timeSlot == '10h-11h') timeSlot = 'c2';

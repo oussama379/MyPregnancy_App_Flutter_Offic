@@ -67,6 +67,7 @@ dependencies:
   simple_timer: ^2.0.0
   country_icons: ^2.0.2
   flutter_local_notifications: ^8.0.0
+  flutter_launcher_icons: ^0.10.0
 
 
 
@@ -74,6 +75,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
+
+flutter_icons:
+  android: true #"launcher_icon"
+  ios: true
+  image_path: "assets/images/appIcon.png"
+  #min_sdk_android: 21 # android min sdk min:16, default 21
 
 
 flutter_native_splash:

@@ -29,7 +29,7 @@ class PreferencesService {
     await preferences.setBool('wantPassword', wantPasswordVar);
   }
 
-  Future<bool> saveAppointmentDates(DateTime dateTime) async {
+  Future<bool>  saveAppointmentDates(DateTime dateTime) async {
     DateFormat dateFormat = DateFormat("dd-MM-yyyy");
     String date = dateFormat.format(dateTime);
     List<dynamic> list = [];

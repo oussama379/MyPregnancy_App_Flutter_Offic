@@ -10,6 +10,7 @@ import '../../../../locator.dart';
 import '../../../../preferencesService.dart';
 import '../../../shared/toasts.dart';
 import '../../../sharedServices/checkInternetConnection.dart';
+import '../../../sharedServices/notificationService.dart';
 import '../appointmentsRepo.dart';
 
 class AppointmentHistoryPage extends StatefulWidget {
@@ -223,6 +224,7 @@ class _AppointmentHistoryPageState extends State<AppointmentHistoryPage> {
               _appointmentRepo.deleteAppointmentPerUser(appointmentsListKeys[index]);
               _appointmentRepo.deleteAppointmentTimeSlot(appointmentsList[index].date, appointmentsList[index].timeSlot);
               _preferencesService.deleteAppointmentDates(appointmentsList[index].date);
+              NotificationService().cancelNotifications(appointmentsList[index].date);
               Navigator.pop(context);
               _toast.showMsg(AppLocalizations.of(context)!.translate('appointment_page_history_dialog_confirm'));
             });
