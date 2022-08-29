@@ -92,25 +92,22 @@ class _ContractionsPageState extends State<ContractionsPage>
               Expanded(
                 child: Container(),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Expanded(
-                    child: Column(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!
-                          .translate('contractions_page_txtCounter'),
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      '$_counter',
-                      style:
-                          TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                )),
-              )
+              Expanded(
+                  child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!
+                        .translate('contractions_page_txtCounter'),
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '$_counter',
+                    style:
+                        TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ))
             ],
           ),
           Row(
