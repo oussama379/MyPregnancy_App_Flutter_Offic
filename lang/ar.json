@@ -44,9 +44,13 @@
   "createAccount_page_age_field_title": "العمر",
   "createAccount_page_nbPreg_field_title": "عدد حالات الحمل السابقة",
   "createAccount_page_send_button": "إرسال الطلب",
+
   "email_recovery_msg": "كلمة المرور الخاصة بك هي:",
   "email_recovery_greeting": "مرحبًا,",
   "email_recovery_subject": "استعادة كلمة المرور",
+  "email_error_msg": "تحقق من تثبيت تطبيق مراسلة على جهازك" ,
+
+
   "settings_page_title": "الإعدادات",
   "settings_page_logout": "تسجيل الخروج",
   "settings_page_pregnancyInfo": "معلومات الحمل",

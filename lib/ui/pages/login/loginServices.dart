@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import '../../../app_localizations.dart';
 import '../../../locator.dart';
@@ -50,8 +51,11 @@ class LoginServices {
       await FlutterEmailSender.send(email);
       Navigator.popUntil(context, ModalRoute.withName('/loginPage'));
       //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Your request was sent.')));
-    }catch (error) {
-      print(error);
+    } on PlatformException catch (e) {
+      if (e.code == 'not_available')
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.translate('email_error_msg'))));
+      print(e.code);
+      //if(error == 'PlatformException')
     }
   }
 
