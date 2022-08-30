@@ -1,7 +1,11 @@
+
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:flutter_mailer/flutter_mailer.dart';
 import '../../../app_localizations.dart';
 import '../../../locator.dart';
 import '../../../preferencesService.dart';
@@ -41,21 +45,61 @@ class LoginServices {
     }
   }
   Future<void> sendEmail(BuildContext context,var email_Msg) async {
-    final Email email = Email(
-      body: email_Msg,
-      subject: "Créer un compte",
-      recipients: ["spm.contact.magrossesse@gmail.com"],
-      isHTML: false,
-    );
-    try {
-      await FlutterEmailSender.send(email);
-      Navigator.popUntil(context, ModalRoute.withName('/loginPage'));
-      //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Your request was sent.')));
-    } on PlatformException catch (e) {
-      if (e.code == 'not_available')
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.translate('email_error_msg'))));
-      print(e.code);
-      //if(error == 'PlatformException')
+    //New Begin
+    if (Platform.isIOS) {
+      final bool canSend = await FlutterMailer.canSendMail();
+      if (!canSend) {
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(
+            AppLocalizations.of(context)!.translate('email_error_msg'))));
+        return;
+      } else {
+        final MailOptions mailOptions = MailOptions(
+          body: email_Msg,
+          subject: "Créer un compte",
+          recipients: ["spm.contact.magrossesse@gmail.com"],
+          isHTML: false,
+        );
+        String platformResponse;
+        final MailerResponse response = await FlutterMailer.send(mailOptions);
+        switch (response) {
+          case MailerResponse.saved: /// ios only
+            platformResponse = 'mail was saved to draft';
+            break;
+          case MailerResponse.sent: /// ios only
+            platformResponse = 'mail was sent';
+            break;
+          case MailerResponse.cancelled: /// ios only
+            platformResponse = 'mail was cancelled';
+            break;
+          case MailerResponse.android:
+            platformResponse = 'intent was successful';
+            break;
+          default:
+            platformResponse = 'unknown';
+            break;
+        }
+        print('platformResponse : $platformResponse');
+      }
+    } else {
+      //New End
+      final Email email = Email(
+        body: email_Msg,
+        subject: "Créer un compte",
+        recipients: ["spm.contact.magrossesse@gmail.com"],
+        isHTML: false,
+      );
+      try {
+        await FlutterEmailSender.send(email);
+        Navigator.popUntil(context, ModalRoute.withName('/loginPage'));
+        //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Your request was sent.')));
+      } on PlatformException catch (e) {
+        if (e.code == 'not_available')
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(
+              AppLocalizations.of(context)!.translate('email_error_msg'))));
+        print(e.code);
+        //if(error == 'PlatformException')
+      }
     }
   }
 
