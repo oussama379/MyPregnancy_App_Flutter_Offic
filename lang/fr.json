@@ -56,6 +56,7 @@
   "email_recovery_msg" : "Votre mot de passe est :",
   "email_recovery_greeting" : "Bonjour, ",
   "email_recovery_subject" : "Récupération du mot de passe",
+  "email_error_msg" : "Vérifiez qu'une application de messagerie est installée sur votre appareil",
 
   "settings_page_title" : "Paramètres",
   "settings_page_logout" : "Déconnexion",

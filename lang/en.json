@@ -61,6 +61,7 @@
   "email_recovery_msg" : "Your password is :",
   "email_recovery_greeting" : "Hello, ",
   "email_recovery_subject" : "Password recovery",
+  "email_error_msg" : "Verify that you have a messaging application installed on your device",
 
   "settings_page_title" : "Settings",
   "settings_page_logout" : "Log Out",
