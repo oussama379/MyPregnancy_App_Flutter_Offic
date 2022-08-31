@@ -11,6 +11,10 @@ import '../../../locator.dart';
 import '../../../preferencesService.dart';
 import '../../shared/toasts.dart';
 import '../../../globals.dart' as globals;
+import 'package:mailto/mailto.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+
 
 class LoginServices {
 
@@ -47,40 +51,48 @@ class LoginServices {
   Future<void> sendEmail(BuildContext context,var email_Msg) async {
     //New Begin
     if (Platform.isIOS) {
-      final bool canSend = await FlutterMailer.canSendMail();
-      if (!canSend) {
+        final toEmail = "spm.contact.magrossesse@gmail.com";
+        final subject = 'Créer un compte';
+        final body = email_Msg;
 
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(
-            AppLocalizations.of(context)!.translate('email_error_msg'))));
-        return;
-      } else {
-        final MailOptions mailOptions = MailOptions(
-          body: email_Msg,
-          subject: "Créer un compte",
-          recipients: ["spm.contact.magrossesse@gmail.com"],
-          isHTML: false,
-        );
-        String platformResponse;
-        final MailerResponse response = await FlutterMailer.send(mailOptions);
-        switch (response) {
-          case MailerResponse.saved: /// ios only
-            platformResponse = 'mail was saved to draft';
-            break;
-          case MailerResponse.sent: /// ios only
-            platformResponse = 'mail was sent';
-            break;
-          case MailerResponse.cancelled: /// ios only
-            platformResponse = 'mail was cancelled';
-            break;
-          case MailerResponse.android:
-            platformResponse = 'intent was successful';
-            break;
-          default:
-            platformResponse = 'unknown';
-            break;
+        final url = 'mailto:$toEmail?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(body)}';
+        if (!await launchUrl(Uri.parse(url))) {
+          throw 'Could not launch $url';
         }
-        print('platformResponse : $platformResponse');
-      }
+
+      // final bool canSend = await FlutterMailer.canSendMail();
+      // if (!canSend) {
+      //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(
+      //       AppLocalizations.of(context)!.translate('email_error_msg'))));
+      //   return;
+      // } else {
+      //   final MailOptions mailOptions = MailOptions(
+      //     body: email_Msg,
+      //     subject: "Créer un compte",
+      //     recipients: ["spm.contact.magrossesse@gmail.com"],
+      //     isHTML: false,
+      //   );
+      //   String platformResponse;
+      //   final MailerResponse response = await FlutterMailer.send(mailOptions);
+      //   switch (response) {
+      //     case MailerResponse.saved: /// ios only
+      //       platformResponse = 'mail was saved to draft';
+      //       break;
+      //     case MailerResponse.sent: /// ios only
+      //       platformResponse = 'mail was sent';
+      //       break;
+      //     case MailerResponse.cancelled: /// ios only
+      //       platformResponse = 'mail was cancelled';
+      //       break;
+      //     case MailerResponse.android:
+      //       platformResponse = 'intent was successful';
+      //       break;
+      //     default:
+      //       platformResponse = 'unknown';
+      //       break;
+      //   }
+      //   print('platformResponse : $platformResponse');
+      // }
     } else {
       //New End
       final Email email = Email(
