@@ -42,8 +42,8 @@ class PreferencesService {
     list.add(date);
     var s = json.encode(list);
     await preferences.setString('appointmentDates', s);
-    print('True');
-    print('Saved AppointmentDates'+s);
+    //print('True');
+    //print('Saved AppointmentDates'+s);
     return true;
   }
 

@@ -42,7 +42,7 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
       if (this.mounted) {
         setState(() {
           _source = source;
-          print(_source.keys.toList()[0]);
+          //print(_source.keys.toList()[0]);
         });
       }
     });
@@ -166,13 +166,14 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
                       timeSlot.forEach((k, v) {
                         //print('Inside For ');
                         TimeSlot c1 = TimeSlot.fromJson(v);
-                        if (c1.id1.length > 0) {
+                        if (c1.id1.length > 0 && c1.id2.length > 0) {
                           slots.add(k.toString());
                         }
                       });
+                      //print(slots);
                       timeSlots[dt] = slots;
                     });
-
+                    //print(timeSlots);
                     return Column(
                       children: [
                         Container(
@@ -289,16 +290,16 @@ class _AppointmentsCalendarPageState extends State<AppointmentsCalendarPage> {
   }
 
   bool checkDate(DateTime selectedDate) {
-    print('checkDate : ' + selectedDate.toString());
+    //print('checkDate : ' + selectedDate.toString());
     for (DateTime d in toHighlight) {
       if (selectedDate.day == d.day &&
           selectedDate.month == d.month &&
           selectedDate.year == d.year) {
-        print('checkDate : true');
+        //print('checkDate : true');
         return true;
       }
     }
-    print('checkDate : false');
+    //print('checkDate : false');
     return false;
   }
 }

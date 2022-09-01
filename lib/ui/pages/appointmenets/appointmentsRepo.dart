@@ -40,8 +40,8 @@ class AppointmentsRepo{
           v.forEach((k2, v2) {
             //print('for the date : '+ dt.toString() + ' time slots : '+k2.toString()+ ' / '+v2.toString());
             if(k2.toString() == 'id1') {
-              print(v2.toString().length);
-              print(k.toString());
+              //print(v2.toString().length);
+              //print(k.toString());
               if(v2.toString().length > 0) {
                 slots.add(k.toString());
               }
@@ -51,11 +51,13 @@ class AppointmentsRepo{
         list[dt] = slots;
         //print(dt); // 2020-01-02 03:04:05.000
       });
-      print(list.toString());
+      //print(list.toString());
     });
   }
 
   Future<void> saveAppointment(DateTime dateTime, String timeSlot) async {
+    DateFormat dateFormat = DateFormat("dd-MM-yyyy");
+    String dateAppoint = dateFormat.format(dateTime);
 
     if(timeSlot == '09h-10h') timeSlot = 'c1';
     if(timeSlot == '10h-11h') timeSlot = 'c2';
@@ -64,24 +66,38 @@ class AppointmentsRepo{
     if(timeSlot == '13h-14h') timeSlot = 'c5';
     if(timeSlot == '14h-15h') timeSlot = 'c6';
 
-    TimeSlot c = new TimeSlot('', globals.UID, 1);
-    dynamic json = c.toJson();
-    DateFormat dateFormat = DateFormat("dd-MM-yyyy");
-    String dateAppoint = dateFormat.format(dateTime);
-    print('In saveAppointment : '+dateAppoint);
-    print('json : '+json.toString());
-    await FirebaseDatabase.instance
+    DatabaseReference reference = FirebaseDatabase.instance
         .reference()
         .child('Rdv')
         .child(dateAppoint)
-        .child(timeSlot)//c1,or...........c6
-        .set(json);
+        .child(timeSlot)
+        .reference();
+
+    TimeSlot c;
+
+    final event = await reference.once();
+    final timeSlotJson = event.value;
+    String id1 = TimeSlot.fromJson(timeSlotJson).id1;
+   // print('timeSlotJson id1 : $id1');
+
+      if(id1.length > 0) c = new TimeSlot(globals.UID, id1, 2);
+      else c = new TimeSlot('', globals.UID, 1);
+      dynamic json = c.toJson();
+      await FirebaseDatabase.instance
+          .reference()
+          .child('Rdv')
+          .child(dateAppoint)
+          .child(timeSlot)//c1,or...........c6
+          .set(json);
   }
 
   Future<void> saveAppointmentPerUser(DateTime dateTime, String timeSlot) async {
+    DateFormat dateFormat = DateFormat("dd-MM-yyyy");
+    String dateAppoint = dateFormat.format(dateTime);
+
     NotificationService().showNotification(
-        1, "Rappel de rendez-vous", "N'oubliez pas votre rendez-vous demain à : $timeSlot", dateTime);
-    print(dateTime.difference(DateTime.now()).inDays);
+        1, "Rappel de rendez-vous", "N'oubliez pas votre rendez-vous le $dateAppoint à :$timeSlot", dateTime);
+    //print(dateTime.difference(DateTime.now()).inDays);
 
     if(timeSlot == '09h-10h') timeSlot = 'c1';
     if(timeSlot == '10h-11h') timeSlot = 'c2';
@@ -90,8 +106,7 @@ class AppointmentsRepo{
     if(timeSlot == '13h-14h') timeSlot = 'c5';
     if(timeSlot == '14h-15h') timeSlot = 'c6';
 
-    DateFormat dateFormat = DateFormat("dd-MM-yyyy");
-    String dateAppoint = dateFormat.format(dateTime);
+
 
     String dateIntString  = DateFormat('yyyy/MM/dd').format(dateTime).replaceAll('/', '');
     int dateInt = int.parse(dateIntString);
@@ -132,9 +147,9 @@ class AppointmentsRepo{
       .child("rdv");
 
   Future<bool> deleteAppointmentPerUser(String key) async {
-    print('key : ');
-    print(key);
-    reference.child(key).remove().whenComplete(() { print('Done'); return true;});
+    //print('key : ');
+    //print(key);
+    reference.child(key).remove().whenComplete(() { return true;});
     return true;
   }
 
@@ -146,12 +161,28 @@ class AppointmentsRepo{
     if(timeSlot == '13h-14h') timeSlot = 'c5';
     if(timeSlot == '14h-15h') timeSlot = 'c6';
 
-    TimeSlot c = new TimeSlot('', '', 0);
+    DatabaseReference reference = FirebaseDatabase.instance
+        .reference()
+        .child('Rdv')
+        .child(dateAppoint)
+        .child(timeSlot)
+        .reference();
+
+    TimeSlot c;
+
+    final event = await reference.once();
+    final timeSlotJson = event.value;
+    String id1 = TimeSlot.fromJson(timeSlotJson).id1;
+    String id2 = TimeSlot.fromJson(timeSlotJson).id2;
+    if(id1.length > 0 && id2.length > 0 && id1 == globals.UID) c = new TimeSlot(id2, '', 1);
+    else if(id1.length > 0 && id2.length > 0 && id2 == globals.UID) c = new TimeSlot('', id1, 1);
+    else c = new TimeSlot('', '', 0);
+
     dynamic json = c.toJson();
     // DateFormat dateFormat = DateFormat("dd-MM-yyyy");
     // String date = dateFormat.format(dateAppoint);
-    print('dateAppoint : '+dateAppoint);
-    print('json : '+json.toString());
+    //print('dateAppoint : '+dateAppoint);
+    //print('json : '+json.toString());
     await FirebaseDatabase.instance
         .reference()
         .child('Rdv')
