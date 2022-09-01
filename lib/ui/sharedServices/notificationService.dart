@@ -29,6 +29,7 @@ class NotificationService {
       requestAlertPermission: false,
       requestBadgePermission: false,
       requestSoundPermission: false,
+
     );
 
     final InitializationSettings initializationSettings =
@@ -69,8 +70,18 @@ class NotificationService {
       // Type of time interpretation
       uiLocalNotificationDateInterpretation:
       UILocalNotificationDateInterpretation.absoluteTime,
-      androidAllowWhileIdle:
-      true, // To show notification even when the app is closed
+      androidAllowWhileIdle: true, // To show notification even when the app is closed
+    );
+  }
+
+  void requestIOSPermissions() {
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+        IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+      alert: true,
+      badge: true,
+      sound: true,
     );
   }
 

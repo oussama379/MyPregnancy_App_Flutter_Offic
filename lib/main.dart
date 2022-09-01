@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -50,6 +51,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
  //initialise notifications
   NotificationService().initNotification();
+  if(Platform.isIOS) NotificationService().requestIOSPermissions();
   // Disable Landscape Mode
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
