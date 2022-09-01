@@ -10,6 +10,9 @@ import Firebase
   ) -> Bool {
     FirebaseApp.configure() //add this before the code below
     GeneratedPluginRegistrant.register(with: self)
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+      if #available(iOS 10.0, *) {
+        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+      }
+      return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
