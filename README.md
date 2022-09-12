@@ -1,16 +1,6 @@
-# ma_grossesse_offi
+# MyPregnancy
 
-A new Flutter project.
+I developed a cross-platform app (Android, IOS) called MyPregnancy, designed specifically for expectant mothers, MyPregnancy is a solution that offers a comprehensive set of features to help expectant mothers understand and manage the pregnancy process. and stay connected with their doctor, while having insight into their personal medical records. The application interacts with EHR, which is a web application for healthcare professionals. 
 
-## Getting Started
+## Application Architecture : 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
