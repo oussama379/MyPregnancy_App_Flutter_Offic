@@ -6,14 +6,9 @@ I developed a cross-platform app (Android, IOS) called MyPregnancy, designed spe
 ![Archit](https://user-images.githubusercontent.com/70114659/189672592-dc910565-2948-474e-a652-c44c2be3ed34.jpg)
 
 
-## Application UIs : 
+## Some UIs from the app : 
 
-<div class="row>
-<img src="https://user-images.githubusercontent.com/70114659/189672733-84c2649b-965c-4f8e-99eb-210439c01cf4.PNG" width="250" height="400">
-<img src="https://user-images.githubusercontent.com/70114659/189672814-ea936e73-0226-48d3-9ce4-65f6a120758c.PNG" width="250" height="400">
-<img src="https://user-images.githubusercontent.com/70114659/189673070-7ae2f8c7-0be1-4d39-8eb7-9a70d7299cfa.PNG" width="250" height="400">
-<img src="https://user-images.githubusercontent.com/70114659/189673130-8e48479a-7871-415e-a020-59fa0ce5b2bb.PNG" width="250" height="400">
-</div>
 
- 
-
+![Diapositive1](https://user-images.githubusercontent.com/70114659/189677435-a9cc3d26-f001-4e6e-a32e-0fc86fb9b36c.JPG)
+![Diapositive2](https://user-images.githubusercontent.com/70114659/189677441-d67e53c2-81f5-43e3-b979-71146bd2e152.JPG)
+![Diapositive3](https://user-images.githubusercontent.com/70114659/189677448-a774c901-ad15-46ef-8276-0dbcaa74f3a1.JPG)
