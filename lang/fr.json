@@ -70,6 +70,12 @@
   "settings_page_deCode_msg_ok" : "Votre code de déverrouillage a été désactivé",
   "settings_page_popUp_dialog": "Entrez votre ancien mot de passe",
   "settings_page_popUp_dialog_btn_submit": "Soumettre",
+  "settings_page_delete" : "Supprimer le compte",
+  "settings_page_delete_dialog_title": "Supprimer le compte",
+  "settings_page_delete_dialog_text": "Êtes-vous sûr de vouloir supprimer votre compte",
+
+  "settings_page_popUp_dialog_firebasePwd": "Entrez le mot de passe de votre compte",
+
 
   "disclaimer_page_title" : "Avertissement",
   "disclaimer_page_section1_title" : "Bienvenue",

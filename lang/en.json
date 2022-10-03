@@ -75,7 +75,11 @@
   "settings_page_deCode_msg_ok" : "Your unlocking code was deactivated",
   "settings_page_popUp_dialog" : "Enter Your Old Password",
   "settings_page_popUp_dialog_btn_submit" : "Submit",
+  "settings_page_delete" : "Delete account",
+  "settings_page_delete_dialog_title" : "Delete account",
+  "settings_page_delete_dialog_text" : "Are you sure you want to delete your account",
 
+  "settings_page_popUp_dialog_firebasePwd" : "Enter your account's password",
 
   "disclaimer_page_title" : "Disclaimer",
   "disclaimer_page_section1_title" : "Welcome",

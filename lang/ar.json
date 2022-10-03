@@ -61,8 +61,14 @@
   "settings_page_deCode_msg_ok": "تم إلغاء تنشيط كود فك القفل الخاص بك",
   "settings_page_popUp_dialog": "أدخل كلمة المرور القديمة" ,
   "settings_page_popUp_dialog_btn_submit": "إرسال" ,
-  
-  
+  "settings_page_delete" : "حذف الحساب",
+  "settings_page_delete_dialog_title": "حذف الحساب" ,
+  "settings_page_delete_dialog_text": "هل أنت متأكد أنك تريد حذف حسابك" ,
+
+  "settings_page_popUp_dialog_firebasePwd": "أدخل كلمة مرور حسابك",
+
+
+
   "disclaimer_page_title": "إخلاء المسؤولية",
   "disclaimer_page_section1_title": "مرحبًا",
   "disclaimer_page_section1_text": "في اتفاقية المستخدم هذه , نرغب في التعبير عن المسؤولية عن استخدام ونطاق المعلومات التي يوفرها هذا التطبيق بالإضافة إلى تفاصيل حقوق النشر. \n\n (آخر تحديث: سبتمبر 2019)",

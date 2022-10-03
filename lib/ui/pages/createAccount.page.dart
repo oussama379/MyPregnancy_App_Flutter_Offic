@@ -17,20 +17,20 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final _toast = locator.get<toastMsg>();
   final _loginService = locator.get<LoginServices>();
 
-
   TextEditingController _emailController = TextEditingController();
   TextEditingController _mobileController = TextEditingController();
   TextEditingController _ageController = TextEditingController();
   TextEditingController _nbPregController = TextEditingController();
 
-  var email_Msg ;
+  var email_Msg;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.translate('createAccount_page_title')),
+        title: Text(AppLocalizations.of(context)!
+            .translate('createAccount_page_title')),
       ),
       body: Form(
         key: _formKey,
@@ -45,14 +45,21 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     width: 300.0,
                     color: Colors.transparent,
                     child: Container(
-                      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
+                        padding: const EdgeInsets.only(right: 10.0, left: 10.0),
                         decoration: BoxDecoration(
                             color: Colors.pinkAccent,
-                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
                         child: new Center(
-                          child: new Text(AppLocalizations.of(context)!.translate('createAccount_page_text_msg'),
-                            style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,),
+                          child: new Text(
+                            AppLocalizations.of(context)!
+                                .translate('createAccount_page_text_msg'),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          ),
                         )),
                   ),
                 ),
@@ -66,16 +73,20 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   controller: _emailController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return AppLocalizations.of(context)!.translate('login_page_email_field_error_noValue');
+                      return AppLocalizations.of(context)!
+                          .translate('login_page_email_field_error_noValue');
                     }
-                    if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)){
-                      return AppLocalizations.of(context)!.translate('recoverPass_page_email_field_noValid');
+                    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        .hasMatch(value)) {
+                      return AppLocalizations.of(context)!
+                          .translate('recoverPass_page_email_field_noValid');
                     }
 
                     return null;
                   },
                   decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 10.0),
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.email,
@@ -84,7 +95,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         onPressed: () {},
                       ),
                       border: OutlineInputBorder(),
-                      labelText: AppLocalizations.of(context)!.translate('login_page_email_field_title'),
+                      labelText: AppLocalizations.of(context)!
+                          .translate('login_page_email_field_title'),
                       hintText: 'abc@gmail.com'),
                 ),
               ),
@@ -95,16 +107,20 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   controller: _mobileController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return AppLocalizations.of(context)!.translate('createAccount_page_phone_field_error_noValue');
+                      return null;
                     }
-                    if(int.tryParse(value) == null){
-                      return AppLocalizations.of(context)!.translate('createAccount_page_phone_field_noValid');
+                    if (value != null) {
+                      if (int.tryParse(value) == null) {
+                        return AppLocalizations.of(context)!.translate(
+                            'createAccount_page_phone_field_noValid');
+                      }
                     }
 
                     return null;
                   },
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 10.0),
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.phone,
@@ -113,7 +129,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         onPressed: () {},
                       ),
                       border: OutlineInputBorder(),
-                      labelText: AppLocalizations.of(context)!.translate('createAccount_page_mobile_field_title'),
+                      labelText: AppLocalizations.of(context)!.translate(
+                              'createAccount_page_mobile_field_title') +
+                          '(Optional)',
                       hintText: 'xx-xx-xx-xx-xx'),
                 ),
               ),
@@ -124,16 +142,21 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   controller: _ageController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return AppLocalizations.of(context)!.translate('createAccount_page_age_field_error_noValue');
+                      return AppLocalizations.of(context)!.translate(
+                          'createAccount_page_age_field_error_noValue');
                     }
-                    if(int.tryParse(value) == null){
-                      return AppLocalizations.of(context)!.translate('createAccount_page_phone_field_noValid');
+                    if (value != null) {
+                      if (int.tryParse(value) == null) {
+                        return AppLocalizations.of(context)!.translate(
+                            'createAccount_page_phone_field_noValid');
+                      }
                     }
 
                     return null;
                   },
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 10.0),
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.cake,
@@ -142,8 +165,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         onPressed: () {},
                       ),
                       border: OutlineInputBorder(),
-                      labelText: AppLocalizations.of(context)!.translate('createAccount_page_age_field_title'),
-                      hintText: AppLocalizations.of(context)!.translate('createAccount_page_age_field_title')),
+                      labelText: AppLocalizations.of(context)!
+                          .translate('createAccount_page_age_field_title'),
+                      hintText: AppLocalizations.of(context)!
+                          .translate('createAccount_page_age_field_title')),
                 ),
               ),
               Padding(
@@ -153,16 +178,19 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   controller: _nbPregController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return AppLocalizations.of(context)!.translate('createAccount_page_nbPreg_field_error_noValue');
+                      return AppLocalizations.of(context)!.translate(
+                          'createAccount_page_nbPreg_field_error_noValue');
                     }
-                    if(int.tryParse(value) == null){
-                      return AppLocalizations.of(context)!.translate('createAccount_page_phone_field_noValid');
+                    if (int.tryParse(value) == null) {
+                      return AppLocalizations.of(context)!
+                          .translate('createAccount_page_phone_field_noValid');
                     }
 
                     return null;
                   },
                   decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 15.0, horizontal: 10.0),
                       suffixIcon: IconButton(
                         icon: Icon(
                           Icons.child_friendly_rounded,
@@ -171,8 +199,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         onPressed: () {},
                       ),
                       border: OutlineInputBorder(),
-                      labelText: AppLocalizations.of(context)!.translate('createAccount_page_nbPreg_field_title'),
-                      hintText: AppLocalizations.of(context)!.translate('createAccount_page_nbPreg_field_title')),
+                      labelText: AppLocalizations.of(context)!
+                          .translate('createAccount_page_nbPreg_field_title'),
+                      hintText: AppLocalizations.of(context)!
+                          .translate('createAccount_page_nbPreg_field_title')),
                 ),
               ),
               SizedBox(
@@ -186,19 +216,32 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     borderRadius: BorderRadius.circular(5)),
                 child: TextButton(
                   onPressed: () {
-                    if(_formKey.currentState!.validate()){
-                      email_Msg = "Bonjour, \n Une patiente vient de faire une demande de création de compte dans l'application du suivi prénatal, ci-dessous ses informations: \n\n"+ 'Email : '+ _emailController.text +"\n" +'Numéro de téléphone : '+ _mobileController.text+"\n"
-                          +'Age : '+ _ageController.text +"\n"  +'Nombre de grossesses précédentes : '+ _nbPregController.text;
+                    if (_formKey.currentState!.validate()) {
+                      email_Msg =
+                          "Bonjour, \n Une patiente vient de faire une demande de création de compte dans l'application du suivi prénatal, ci-dessous ses informations: \n\n" +
+                              'Email : ' +
+                              _emailController.text +
+                              "\n" +
+                              'Numéro de téléphone : ' +
+                              _mobileController.text +
+                              "\n" +
+                              'Age : ' +
+                              _ageController.text +
+                              "\n" +
+                              'Nombre de grossesses précédentes : ' +
+                              _nbPregController.text;
 
                       _loginService.sendEmail(context, email_Msg);
-                      print ("Successful");
-                    }else{
-                      _toast.showMsg(AppLocalizations.of(context)!.translate('failed'));
-                      print ("Unsuccessful");
+                      print("Successful");
+                    } else {
+                      _toast.showMsg(
+                          AppLocalizations.of(context)!.translate('failed'));
+                      print("Unsuccessful");
                     }
                   },
                   child: Text(
-                    AppLocalizations.of(context)!.translate('createAccount_page_send_button'),
+                    AppLocalizations.of(context)!
+                        .translate('createAccount_page_send_button'),
                     style: TextStyle(color: Colors.white, fontSize: 17),
                   ),
                 ),
@@ -212,6 +255,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();

@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
@@ -115,6 +116,37 @@ class LoginServices {
     }
   }
 
+  DatabaseReference reference = FirebaseDatabase.instance
+      .reference()
+      .child('Patientes');
+
+  Future<bool> deletePatientInfo() async {
+    reference.child(globals.UID.toString()).remove().whenComplete(() { print('Done'); return true;});
+    return true;
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future deleteUser(String email, String password, BuildContext context) async {
+    try {
+      AuthCredential credentials = EmailAuthProvider.credential(email: email, password: password);
+      await _auth.currentUser!.reauthenticateWithCredential(credentials);
+      await  _auth.currentUser?.delete();
+      _preferencesService.deleteLoggedIn();
+      _toast.showMsg(AppLocalizations.of(context)!
+          .translate('contractions_page_dialog_conf'));
+      Navigator.pushNamedAndRemoveUntil(context, "/loginPage", (_) => false);
+      print('logged out');
+      return Future.value(true);
+    } catch (e) {
+      print(e.toString());
+      _toast.showMsg(AppLocalizations.of(context)!
+          .translate('settings_page_popUp_dialog_ErrorPwd'));
+      Navigator.pop(context);
+      print('Error Delete');
+      return Future.value(false);
+    }
+  }
 
   LoginServices();
 }

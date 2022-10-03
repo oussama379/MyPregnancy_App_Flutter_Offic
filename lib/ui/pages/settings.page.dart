@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:ma_grossesse/ui/pages/login/loginServices.dart';
+import 'package:ma_grossesse/ui/pages/settings/widgets/firebasePasswordConfAlert.dart';
 import 'package:ma_grossesse/ui/pages/settings/widgets/listItem.widget.dart';
 import 'package:ma_grossesse/ui/pages/settings/widgets/passwordConfAlert.dart';
 
@@ -18,6 +20,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   var wantPassVar;
   final _preferencesService = locator.get<PreferencesService>();
+  final _loginService = locator.get<LoginServices>();
   final _toast = locator.get<toastMsg>();
   var _passwordFromPref;
 
@@ -62,6 +65,9 @@ class _SettingsPageState extends State<SettingsPage> {
   Future<String?> openDialog(BuildContext context) => showDialog<String>(
       context: context, builder: (BuildContext context) => MyAlertDialog());
 
+  Future<String?> openFirebaseDialog(BuildContext context) => showDialog<String>(
+      context: context, builder: (BuildContext context) => MyFirebaseAlertDialog());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,8 +90,11 @@ class _SettingsPageState extends State<SettingsPage> {
                         SizedBox(
                           width: 10,
                         ),
-                        Text(AppLocalizations.of(context)!
-                            .translate('settings_page_deCode'), style: TextStyle(fontSize: 17),),
+                        Text(
+                          AppLocalizations.of(context)!
+                              .translate('settings_page_deCode'),
+                          style: TextStyle(fontSize: 17),
+                        ),
                       ],
                     ),
                     onTap: () async {
@@ -120,8 +129,11 @@ class _SettingsPageState extends State<SettingsPage> {
                         SizedBox(
                           width: 10,
                         ),
-                        Text(AppLocalizations.of(context)!
-                            .translate('settings_page_acCode'), style: TextStyle(fontSize: 17),),
+                        Text(
+                          AppLocalizations.of(context)!
+                              .translate('settings_page_acCode'),
+                          style: TextStyle(fontSize: 17),
+                        ),
                       ],
                     ),
                     onTap: () {
@@ -140,8 +152,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(AppLocalizations.of(context)!
-                        .translate('settings_page_changeLock'), style: TextStyle(fontSize: 17),),
+                    Text(
+                      AppLocalizations.of(context)!
+                          .translate('settings_page_changeLock'),
+                      style: TextStyle(fontSize: 17),
+                    ),
                   ],
                 ),
                 onTap: () async {
@@ -177,8 +192,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(AppLocalizations.of(context)!
-                        .translate('settings_page_dicl'), style: TextStyle(fontSize: 17),),
+                    Text(
+                      AppLocalizations.of(context)!
+                          .translate('settings_page_dicl'),
+                      style: TextStyle(fontSize: 17),
+                    ),
                   ],
                 ),
                 onTap: () {
@@ -195,8 +213,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(AppLocalizations.of(context)!
-                        .translate('settings_page_privacy'), style: TextStyle(fontSize: 17),),
+                    Text(
+                      AppLocalizations.of(context)!
+                          .translate('settings_page_privacy'),
+                      style: TextStyle(fontSize: 17),
+                    ),
                   ],
                 ),
                 onTap: () {
@@ -213,8 +234,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(AppLocalizations.of(context)!
-                        .translate('settings_page_contact'), style: TextStyle(fontSize: 17),),
+                    Text(
+                      AppLocalizations.of(context)!
+                          .translate('settings_page_contact'),
+                      style: TextStyle(fontSize: 17),
+                    ),
                   ],
                 ),
                 onTap: () {
@@ -231,8 +255,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(AppLocalizations.of(context)!
-                        .translate('settings_page_logout'), style: TextStyle(fontSize: 17),),
+                    Text(
+                      AppLocalizations.of(context)!
+                          .translate('settings_page_logout'),
+                      style: TextStyle(fontSize: 17),
+                    ),
                   ],
                 ),
                 onTap: () {
@@ -242,7 +269,63 @@ class _SettingsPageState extends State<SettingsPage> {
                       context, "/loginPage", (_) => false);
                   print('logged out');
                 }),
+            Divider(color: Colors.black87),
+            ListTile(
+                title: Row(
+                  children: [
+                    Icon(
+                      Icons.restore_from_trash_rounded,
+                      size: 35,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!
+                          .translate('settings_page_delete'),
+                      style: TextStyle(fontSize: 17),
+                    ),
+                  ],
+                ),
+                onTap: () async {
+                  var firebasePwd = await openFirebaseDialog(context);
+                  print(firebasePwd);
+                  if(firebasePwd != null && firebasePwd.isNotEmpty) _showDeleteDialog(firebasePwd!);
+                }),
           ],
         ));
+  }
+
+  void _showDeleteDialog(String pwd) {
+    showDialog(
+        context: this.context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(AppLocalizations.of(context)!
+                .translate('settings_page_delete_dialog_title')),
+            content: Text(AppLocalizations.of(context)!
+                .translate('settings_page_delete_dialog_text')),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(AppLocalizations.of(context)!
+                      .translate('weight_history_dialog_cancel'))),
+              TextButton(
+                  onPressed: () {
+                    setState(() {
+                      final FirebaseAuth _auth = FirebaseAuth.instance;
+                      if (_auth.currentUser != null) {
+                          String? email1 = _auth.currentUser?.email;
+                          _loginService.deleteUser(email1!, pwd, context);
+                      }
+                    });
+                  },
+                  child: Text(AppLocalizations.of(context)!
+                      .translate('weight_history_dialog_confirm'))),
+            ],
+          );
+        });
   }
 }
